@@ -113,23 +113,57 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~comany.png" />
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany.png" />
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%402x~ipad~anyany.png" />
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~comany-1.png" />
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~comany-2.png" />
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~comany-3.png" />
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~comany-4.png" />
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~comany-5.png" />
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany-1.png" />
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany-2.png" />
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany-3.png" />
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany-4.png" />
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany-5.png" />
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany-6.png" />
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany-7.png" />
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany-8.png" />
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~comany.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%402x~ipad~anyany.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~comany-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~comany-2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~comany-3.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~comany-4.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~comany-5.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany-2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany-3.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany-4.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany-5.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany-6.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany-7.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany-8.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

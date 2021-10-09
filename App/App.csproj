@@ -70,7 +70,6 @@
     <None Remove="Xamarin.FFImageLoading.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\" />
     <Folder Include="Constants\" />
     <Folder Include="Resx\" />
     <Folder Include="Features\ToDo\" />
@@ -91,6 +90,15 @@
     <Folder Include="Providers\Api\Resx\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Features\Menu\Pages\MenuView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Features\Menu\Pages\MenuViewDetail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Features\Menu\Pages\MenuViewFlyout.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Rexs\AppResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
