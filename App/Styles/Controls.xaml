@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+
+    <Style x:Key="ListViewStyle" TargetType="ListView">
+        <Setter Property="SeparatorVisibility" Value="None" />
+        <Setter Property="IsPullToRefreshEnabled" Value="True" />
+        <Setter Property="HasUnevenRows" Value="True" />
+        <Setter Property="VerticalOptions" Value="FillAndExpand" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+    </Style>
+
+    <Style x:Key="HorizontalSeparatorStyle" TargetType="BoxView">
+        <Setter Property="HeightRequest" Value="0.5" />
+        <Setter Property="BackgroundColor" Value="{StaticResource SeparatorColor}" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+    </Style>
+
+    <Style x:Key="VerticalSeparatorStyle" TargetType="BoxView">
+        <Setter Property="WidthRequest" Value="0.5" />
+        <Setter Property="BackgroundColor" Value="{StaticResource SeparatorColor}" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+    </Style>
+
+    <Style x:Key="FFImageStyle" TargetType="ffimageloading:CachedImage">
+        <Setter Property="Aspect" Value="AspectFit" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+    </Style>
+
+    <Style x:Key="ListLabelStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="{StaticResource MediumLabelSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource PrimaryFontMedium}" />
+        <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+        <Setter Property="LineBreakMode" Value="NoWrap" />
+        <Setter Property="Padding" Value="{StaticResource padding_10}" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+        <Setter Property="VerticalOptions" Value="FillAndExpand" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+    </Style>
+
+    <Style x:Key="TitleLabelStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="{StaticResource TitleLabelSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource PrimaryFontBold}" />
+        <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+        <Setter Property="Padding" Value="{StaticResource padding_10}" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+    </Style>
+
+    <Style x:Key="DetailLabelStyle" TargetType="Label">
+        <Setter Property="Padding" Value="{StaticResource padding_10}" />
+        <Setter Property="FontSize" Value="{StaticResource DescriptionLabelSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource PrimaryFontRegular}" />
+        <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="App.Features.ToDo.Pages.List.ItemListView"
+    xmlns:viewModelBase="clr-namespace:App;assembly=App"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    Title="List" >
+    <ContentPage.Content>
+        <ListView x:Name="listview" ItemsSource="{Binding Items}"
+                  CachingStrategy="RecycleElement"
+                  Style="{StaticResource ListViewStyle}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid RowDefinitions="*,Auto" ColumnDefinitions="Auto,*"
+                              Padding="{StaticResource padding_10}">
+                            <ffimageloading:CachedImage Source="dashboard"
+                                                        Style="{StaticResource FFImageStyle}"/>
+                            <Label Grid.Column="1" Text="{Binding Name}"
+                                   Style="{DynamicResource ListLabelStyle}"/>
+                            <BoxView Grid.Row="1" Grid.ColumnSpan="2"
+                                     Style="{StaticResource HorizontalSeparatorStyle}"/>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.ItemTappedCommand,Source={x:Reference listview}}"
+                                                      CommandParameter="{Binding Id}"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

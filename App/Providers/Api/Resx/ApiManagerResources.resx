@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="NoInternetAlert" xml:space="preserve">
+		<value>No Internet</value>
+	</data>
+	<data name="CheckNetworkAlert" xml:space="preserve">
+		<value>Check your network settings and try again!</value>
+	</data>
+	<data name="VerifyNetworkAlert" xml:space="preserve">
+		<value>Please verify you have a good Internet connection and try again</value>
+	</data>
+	<data name="LoadingMessage" xml:space="preserve">
+		<value>Loading</value>
+	</data>
+	<data name="Retry" xml:space="preserve">
+		<value>Retry</value>
+	</data>
+	<data name="Alert" xml:space="preserve">
+		<value>Alert</value>
+	</data>
+	<data name="SessionExpiredAlert" xml:space="preserve">
+		<value>Session Expired</value>
+	</data>
+	<data name="SessionExpiredAlertMessage" xml:space="preserve">
+		<value>Oops, seems your session expired. Please login again!</value>
+	</data>
+	<data name="SomethingWrongAlert" xml:space="preserve">
+		<value>Something went wrong, please try again later!</value>
+	</data>
+	<data name="OopsSomethingWrongAlert" xml:space="preserve">
+		<value>Oops, something went wrong.</value>
+	</data>
+	<data name="StillWorkingAlert" xml:space="preserve">
+		<value>Still working...hold tight!</value>
+	</data>
+</root>

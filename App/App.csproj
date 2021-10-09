@@ -1,0 +1,124 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2125" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="5.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Refit.HttpClientFactory" Version="6.0.94" />
+    <PackageReference Include="akavache" Version="7.3.1" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.514" />
+    <PackageReference Include="Microsoft.AppCenter" Version="4.4.0" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.4.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.4.0" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Microsoft.Extensions.Http" />
+    <None Remove="Microsoft.Extensions.Http.Polly" />
+    <None Remove="Microsoft.Extensions.DependencyInjection" />
+    <None Remove="Microsoft.Extensions.Hosting" />
+    <None Remove="Features\" />
+    <None Remove="Mobility.Xam" />
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+    <None Remove="AutoMapper" />
+    <None Remove="Constants\" />
+    <None Remove="Refit" />
+    <None Remove="Refit.HttpClientFactory" />
+    <None Remove="Microsoft.AppCenter" />
+    <None Remove="Microsoft.AppCenter.Crashes" />
+    <None Remove="Microsoft.AppCenter.Analytics" />
+    <None Remove="Rexs\" />
+    <None Remove="Acr.UserDialogs" />
+    <None Remove="Provider.Navigation" />
+    <None Remove="Provider.Dialog" />
+    <None Remove="Provider.Analytics.AppCenter" />
+    <None Remove="Provider.API" />
+    <None Remove="akavache" />
+    <None Remove="Features\New Folder\" />
+    <None Remove="ToDo\" />
+    <None Remove="Features\ToDo\Pages\List\" />
+    <None Remove="Features\ToDo\Pages\Detail\" />
+    <None Remove="Providers\" />
+    <None Remove="Providers\Analytics\" />
+    <None Remove="Providers\Api\" />
+    <None Remove="Providers\Cache\" />
+    <None Remove="Providers\Dialog\" />
+    <None Remove="Providers\Navigation\" />
+    <None Remove="Providers\Api\Constants\" />
+    <None Remove="Styles\" />
+    <None Remove="Converters\" />
+    <None Remove="Assets\" />
+    <None Remove="Assets\Fonts\" />
+    <None Remove="Providers\Navigation\Controls\" />
+    <None Remove="Providers\Api\Resx\" />
+    <None Remove="Xamarin.FFImageLoading.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\" />
+    <Folder Include="Constants\" />
+    <Folder Include="Resx\" />
+    <Folder Include="Features\ToDo\" />
+    <Folder Include="Features\ToDo\Pages\List\" />
+    <Folder Include="Features\ToDo\Pages\Detail\" />
+    <Folder Include="Providers\" />
+    <Folder Include="Providers\Analytics\" />
+    <Folder Include="Providers\Api\" />
+    <Folder Include="Providers\Cache\" />
+    <Folder Include="Providers\Dialog\" />
+    <Folder Include="Providers\Navigation\" />
+    <Folder Include="Providers\Api\Constants\" />
+    <Folder Include="Styles\" />
+    <Folder Include="Converters\" />
+    <Folder Include="Assets\" />
+    <Folder Include="Assets\Fonts\" />
+    <Folder Include="Providers\Navigation\Controls\" />
+    <Folder Include="Providers\Api\Resx\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Rexs\AppResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Providers\Api\Resx\ApiManagerResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ApiManagerResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Condition=" '$(EnableDefaultEmbeddedResourceItems)' == 'true' " Update="Resx\AppResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Rexs\AppResources.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resx\AppResources.Designer.cs">
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Providers\Api\Resx\ApiManagerResources.Designer.cs">
+      <DependentUpon>ApiManagerResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Styles\color.sxaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </None>
+  </ItemGroup>
+</Project>
