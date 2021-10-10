@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="App.Features.Accessories.Pages.Add.AddAccessoriesView"
+    xmlns:viewModelBase="clr-namespace:App;assembly=App"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true">
+    <ContentPage.Content>
+        <StackLayout Style="{StaticResource BaseStackStyle}">
+            <Grid RowDefinitions="*,*,*,*,*,*" ColumnDefinitions="*,*"
+                  Style="{StaticResource BaseGridStyle}">
+                <Entry Grid.ColumnSpan="2" Placeholder="Part No"
+                              Text="{Binding PartNumber}"/>
+                <Entry Grid.Row="1" Grid.ColumnSpan="2"
+                              Placeholder="Accessory Name"
+                              Text="{Binding Accessory}"/>
+                <Entry Grid.Row="2" Grid.ColumnSpan="2"
+                              Placeholder="Quantity"
+                              Text="{Binding Quantity}"
+                       Keyboard="Numeric"/>
+                <Entry Grid.Row="3" Grid.ColumnSpan="2"
+                              Placeholder="Unit Price"
+                              Text="{Binding Price}"
+                       Keyboard="Numeric"/>
+                <Button Grid.Row="5" Grid.ColumnSpan="2" Text="Add"
+                        Style="{StaticResource BaseButtonStyle}"
+                        Command="{Binding AddCommand}"/>
+        </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

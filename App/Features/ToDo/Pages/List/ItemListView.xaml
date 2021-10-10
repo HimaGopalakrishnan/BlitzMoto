@@ -9,15 +9,13 @@
     Title="List" >
     <ContentPage.Content>
         <ListView x:Name="listview" ItemsSource="{Binding Items}"
-                  CachingStrategy="RecycleElement"
-                  Style="{StaticResource ListViewStyle}">
+                  CachingStrategy="RecycleElement">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <Grid RowDefinitions="*,Auto" ColumnDefinitions="Auto,*"
                               Padding="{StaticResource padding_10}">
-                            <ffimageloading:CachedImage Source="dashboard"
-                                                        Style="{StaticResource FFImageStyle}"/>
+                            <ffimageloading:CachedImage Source="dashboard"/>
                             <Label Grid.Column="1" Text="{Binding Name}"
                                    Style="{DynamicResource ListLabelStyle}"/>
                             <BoxView Grid.Row="1" Grid.ColumnSpan="2"

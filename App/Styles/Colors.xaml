@@ -6,5 +6,7 @@
     <Color x:Key="TransparentColor">Transparent</Color>
     <Color x:Key="WhiteColor">White</Color>
     <Color x:Key="BlackColor">Black</Color>
+    <Color x:Key="PrimaryRedColor">#87040f</Color>
+    <Color x:Key="RedColor">Red</Color>
     <Color x:Key="SeparatorColor">#CCCCCC</Color>
 </ResourceDictionary>

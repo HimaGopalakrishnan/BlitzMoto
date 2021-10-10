@@ -17,6 +17,10 @@ using App.Features.ToDo.Services;
 using App.Features.ToDo.Pages.Detail;
 using App.Features.ToDo.Pages.List;
 using App.Provider.Navigation.Services;
+using App.Features.Menu.Pages;
+using App.Features.Accessories.Services;
+using App.Features.Accessories.Pages.List;
+using App.Features.Accessories.Pages.Add;
 
 namespace App
 {
@@ -57,6 +61,9 @@ namespace App
 
             services.AddTransient<ItemListViewModel>();
             services.AddTransient<ItemDetailViewModel>();
+            services.AddTransient<AccessoriesListViewModel>();
+            services.AddTransient<AddAccessoriesViewModel>();
+            services.AddTransient<MenuViewModel>();
 
             #endregion
 
@@ -73,7 +80,7 @@ namespace App
 
             #region Services
 
-            services.AddTransient<IItemsService, ItemsService>();
+            services.AddTransient<IAccessoriesService, AccessoriesService>();
 
             #endregion
 

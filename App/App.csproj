@@ -26,6 +26,8 @@
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.4.0" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.4.0" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="FirebaseDatabase.net" Version="4.0.6" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.2.0" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Microsoft.Extensions.Http" />
@@ -68,6 +70,30 @@
     <None Remove="Providers\Navigation\Controls\" />
     <None Remove="Providers\Api\Resx\" />
     <None Remove="Xamarin.FFImageLoading.Forms" />
+    <None Remove="Features\Home\" />
+    <None Remove="Assets\Fonts\calligraphy.otf" />
+    <None Remove="Assets\Fonts\roboto_bold.ttf" />
+    <None Remove="Assets\Fonts\roboto_condensed_bolditalic.ttf" />
+    <None Remove="Assets\Fonts\roboto_medium.ttf" />
+    <None Remove="Assets\Fonts\roboto_regular.ttf" />
+    <None Remove="FirebaseDatabase.net" />
+    <None Remove="Features\User\" />
+    <None Remove="Features\User\Models\" />
+    <None Remove="Features\User\Pages\" />
+    <None Remove="Features\User\Services\" />
+    <None Remove="Features\Accessories\" />
+    <None Remove="Features\Accessories\Models\" />
+    <None Remove="Features\Accessories\Pages\" />
+    <None Remove="Features\Accessories\Services\" />
+    <None Remove="Features\SpareParts\" />
+    <None Remove="Features\SpareParts\Models\" />
+    <None Remove="Features\SpareParts\Pages\" />
+    <None Remove="Features\SpareParts\Services\" />
+    <None Remove="Features\About\" />
+    <None Remove="Features\About\Pages\" />
+    <None Remove="Features\Accessories\Pages\List\" />
+    <None Remove="Features\Accessories\Pages\Add\" />
+    <None Remove="Xamarin.CommunityToolkit" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Constants\" />
@@ -88,6 +114,30 @@
     <Folder Include="Assets\Fonts\" />
     <Folder Include="Providers\Navigation\Controls\" />
     <Folder Include="Providers\Api\Resx\" />
+    <Folder Include="Features\Home\" />
+    <Folder Include="Features\User\" />
+    <Folder Include="Features\User\Models\" />
+    <Folder Include="Features\User\Pages\" />
+    <Folder Include="Features\User\Services\" />
+    <Folder Include="Features\Accessories\" />
+    <Folder Include="Features\Accessories\Models\" />
+    <Folder Include="Features\Accessories\Pages\" />
+    <Folder Include="Features\Accessories\Services\" />
+    <Folder Include="Features\SpareParts\" />
+    <Folder Include="Features\SpareParts\Models\" />
+    <Folder Include="Features\SpareParts\Pages\" />
+    <Folder Include="Features\SpareParts\Services\" />
+    <Folder Include="Features\About\" />
+    <Folder Include="Features\About\Pages\" />
+    <Folder Include="Features\Accessories\Pages\List\" />
+    <Folder Include="Features\Accessories\Pages\Add\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Fonts\calligraphy.otf" />
+    <EmbeddedResource Include="Assets\Fonts\roboto_bold.ttf" />
+    <EmbeddedResource Include="Assets\Fonts\roboto_condensed_bolditalic.ttf" />
+    <EmbeddedResource Include="Assets\Fonts\roboto_medium.ttf" />
+    <EmbeddedResource Include="Assets\Fonts\roboto_regular.ttf" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Features\Menu\Pages\MenuView.xaml">

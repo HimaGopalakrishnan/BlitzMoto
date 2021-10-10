@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="App.Features.User.Pages.LoginView"
+    xmlns:viewModelBase="clr-namespace:App;assembly=App"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+    <ContentPage.Content>
+        <StackLayout Style="{StaticResource BaseStackStyle}">
+            <Grid RowDefinitions="Auto,Auto,Auto"
+                  Style="{StaticResource BaseGridStyle}"
+                  VerticalOptions="CenterAndExpand">
+                <Entry Placeholder="Email"
+                              Text="{Binding Email}"/>
+                <Entry Grid.Row="1" Grid.ColumnSpan="2"
+                              Placeholder="Password"
+                              Text="{Binding Password, Mode=TwoWay}"
+                              IsPassword="{Binding IsPassword}"/>
+                <ffimageloading:CachedImage Grid.Row="1" Grid.Column="1" Style="{StaticResource PasswordEyeStyle}"
+                                            Source="{Binding IsPassword,Converter={StaticResource PasswordEyeVisibilityConverter}}">
+                    <ffimageloading:CachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding EyeImageClickedCommand}"/>
+                    </ffimageloading:CachedImage.GestureRecognizers>
+                </ffimageloading:CachedImage>
+                <Button Grid.Row="2" Text="Login"
+                        Style="{StaticResource BaseButtonStyle}"
+                        Command="{Binding LoginCommand}"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

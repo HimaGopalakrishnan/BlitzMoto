@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="App.Features.Accessories.Pages.List.AccessoriesListView"
+    xmlns:viewModelBase="clr-namespace:App;assembly=App"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+    <ContentPage.Content>
+        <Grid RowDefinitions="*,Auto"
+              Style="{StaticResource BaseGridStyle}">
+            <ListView x:Name="listview" Grid.RowSpan="2" ItemsSource="{Binding Accessories}"
+                      CachingStrategy="RecycleElement">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid RowDefinitions="*,Auto" ColumnDefinitions="Auto,*"
+                                  Padding="{StaticResource padding_10}">
+                                <ffimageloading:CachedImage Source="dashboard"/>
+                                <Label Grid.Column="1" Text="{Binding Name}"
+                                       Style="{DynamicResource ListLabelStyle}"/>
+                                <BoxView Grid.Row="1" Grid.ColumnSpan="2"
+                                         Style="{StaticResource HorizontalSeparatorStyle}"/>
+                                <!--<Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.ItemTappedCommand,Source={x:Reference listview}}"
+                                                          CommandParameter="{Binding Id}"/>
+                                </Grid.GestureRecognizers>-->
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Frame Grid.Row="1" Style="{StaticResource ImageBorderStyle}"
+                   VerticalOptions="End" HorizontalOptions="End"
+                   Margin="{StaticResource bottom_10}">
+                <ffimageloading:CachedImage Source="phone">
+                    <ffimageloading:CachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AddIconTappedCommand}"/>
+                    </ffimageloading:CachedImage.GestureRecognizers>
+                </ffimageloading:CachedImage>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="App.Features.Home.HomeView"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+    <ContentPage.Content>
+        <Grid RowDefinitions="*,*,*,*,*,*,Auto,Auto"
+              ColumnDefinitions="*,*"
+              Style="{StaticResource BaseGridStyle}">
+            <Frame Grid.ColumnSpan="2">
+                <Label Text="Accessories" Style="{StaticResource HomeLabelStyle}"/>
+            </Frame>
+            <Frame Grid.Row="1" Grid.ColumnSpan="2">
+                <Label Text="Riding Gears" Style="{StaticResource HomeLabelStyle}"/>
+            </Frame>
+            <Frame Grid.Row="2" Grid.ColumnSpan="2">
+                <Label Text="Power Parts" Style="{StaticResource HomeLabelStyle}"/>
+            </Frame>
+            <Frame Grid.Row="3" Grid.ColumnSpan="2">
+                <Label Text="Apparels" Style="{StaticResource HomeLabelStyle}"/>
+            </Frame>
+            <Frame Grid.Row="4" Grid.ColumnSpan="2">
+                <Label Text="Service Prebooking" Style="{StaticResource HomeLabelStyle}"/>
+            </Frame>
+            <Frame Grid.Row="5" Grid.ColumnSpan="2">
+                <Label Text="Spare Booking" Style="{StaticResource HomeLabelStyle}"/>
+            </Frame>
+            <ffimageloading:CachedImage Grid.Row="6"
+                                        Source="whatsapp"
+                                        Style="{StaticResource LogoStyle}"/>
+            <ffimageloading:CachedImage Grid.Row="6" Grid.Column="1"
+                                        Source="instagram"
+                                        Style="{StaticResource LogoStyle}"/>
+            <Grid Grid.Row="7" Grid.ColumnSpan="2"
+                  RowDefinitions="Auto,Auto,Auto"
+                  ColumnDefinitions="Auto,*,Auto"
+                  RowSpacing="{StaticResource spacing_0}">
+                <ffimageloading:CachedImage Source="location" Style="{StaticResource IconStyle}"/>
+                <Label Grid.Column="1" Text="Blitz Moto Valanchery" Style="{StaticResource ListLabelStyle}"/>
+                <ffimageloading:CachedImage Grid.Row="1" Source="ic_instagram" Style="{StaticResource IconStyle}"
+                                            HeightRequest="30" WidthRequest="30"/>
+                <Label Grid.Row="1" Grid.Column="1" Text="teamblitzmoto" Style="{StaticResource ListLabelStyle}"/>
+                <ffimageloading:CachedImage Grid.Row="2" Source="phone" Style="{StaticResource IconStyle}"/>
+                <Label Grid.Row="2" Grid.Column="1" Text="8589801173" Style="{StaticResource ListLabelStyle}"/>
+                <StackLayout Grid.Row="2" Grid.Column="2"
+                             Orientation="Horizontal"
+                             HorizontalOptions="End">
+                    <Frame Style="{StaticResource ImageBorderStyle}">
+                        <ffimageloading:CachedImage Source="facebook" Style="{StaticResource IconStyle}"/>
+                    </Frame>
+                    <Frame Style="{StaticResource ImageBorderStyle}">
+                        <ffimageloading:CachedImage Source="call" Style="{StaticResource IconStyle}"/>
+                    </Frame>
+                    <Frame Style="{StaticResource ImageBorderStyle}">
+                        <ffimageloading:CachedImage Source="gmail" Style="{StaticResource IconStyle}"/>
+                    </Frame>
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

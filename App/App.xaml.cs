@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using App.Constants;
+using App.Features.Menu.Pages;
 using App.Features.ToDo.Pages.List;
 using App.Provider.Navigation.Services;
 using App.Resx;
@@ -37,7 +38,8 @@ namespace App
         {
             base.OnStart();
             await _navigationService.InitializeAsync();
-            await SetMainPage();
+            MainPage = new MenuView();
+            //await SetMainPage();
         }
 
         protected override void OnSleep()
@@ -63,7 +65,7 @@ namespace App
 
         async Task SetMainPage()
         {
-            await _navigationService.NavigateToAsync<ItemListViewModel>();
+            await _navigationService.NavigateToAsync<MenuViewModel>();
         }
 
         #endregion

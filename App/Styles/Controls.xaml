@@ -4,12 +4,16 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
 
-    <Style x:Key="ListViewStyle" TargetType="ListView">
+    <Style TargetType="ListView">
         <Setter Property="SeparatorVisibility" Value="None" />
         <Setter Property="IsPullToRefreshEnabled" Value="True" />
         <Setter Property="HasUnevenRows" Value="True" />
         <Setter Property="VerticalOptions" Value="FillAndExpand" />
         <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+    </Style>
+
+    <Style x:Key="MenuListStyle" TargetType="ListView">
+        <Setter Property="IsPullToRefreshEnabled" Value="False" />
     </Style>
 
     <Style x:Key="HorizontalSeparatorStyle" TargetType="BoxView">
@@ -24,10 +28,46 @@
         <Setter Property="HorizontalOptions" Value="FillAndExpand" />
     </Style>
 
-    <Style x:Key="FFImageStyle" TargetType="ffimageloading:CachedImage">
+    <Style TargetType="ffimageloading:CachedImage">
         <Setter Property="Aspect" Value="AspectFit" />
         <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+    </Style>
+
+    <Style x:Key="PasswordEyeStyle" TargetType="ffimageloading:CachedImage">
+        <Setter Property="HeightRequest" Value="{StaticResource height_30}" />
+        <Setter Property="Margin" Value="{StaticResource bottom_10}" />
+        <Setter Property="HorizontalOptions" Value="End" />
+    </Style>
+
+    <Style x:Key="IconStyle" TargetType="ffimageloading:CachedImage">
+        <Setter Property="HeightRequest" Value="20" />
+        <Setter Property="WidthRequest" Value="20" />
+    </Style>
+
+    <Style x:Key="LogoStyle" TargetType="ffimageloading:CachedImage">
+        <Setter Property="HeightRequest" Value="30" />
+        <Setter Property="WidthRequest" Value="30" />
+    </Style>
+
+    <Style x:Key="BaseLabelStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="{StaticResource MediumLabelSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource PrimaryFontRegular}" />
+        <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+        <Setter Property="Padding" Value="{StaticResource padding_10}" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
         <Setter Property="HorizontalOptions" Value="Start" />
+    </Style>
+
+    <Style x:Key="HomeLabelStyle" TargetType="Label">
+        <Setter Property="Padding" Value="{StaticResource padding_10}" />
+        <Setter Property="FontSize" Value="{StaticResource LargeLabelSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource CondensedBoldItalic}" />
+        <Setter Property="TextColor" Value="{StaticResource RedColor}" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
     </Style>
 
     <Style x:Key="ListLabelStyle" TargetType="Label">
@@ -35,7 +75,6 @@
         <Setter Property="FontFamily" Value="{StaticResource PrimaryFontMedium}" />
         <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
         <Setter Property="LineBreakMode" Value="NoWrap" />
-        <Setter Property="Padding" Value="{StaticResource padding_10}" />
         <Setter Property="VerticalTextAlignment" Value="Center" />
         <Setter Property="HorizontalTextAlignment" Value="Start" />
         <Setter Property="VerticalOptions" Value="FillAndExpand" />
@@ -48,8 +87,24 @@
         <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
         <Setter Property="Padding" Value="{StaticResource padding_10}" />
         <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+    </Style>
+
+    <Style x:Key="MenuLabelStyle" TargetType="Label"
+           BasedOn="{StaticResource BaseLabelStyle}">
+        <Setter Property="FontSize" Value="{StaticResource LargeLabelSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource PrimaryFontBold}" />
         <Setter Property="HorizontalTextAlignment" Value="Start" />
         <Setter Property="HorizontalOptions" Value="Start" />
+    </Style>
+
+    <Style x:Key="LogoLabelStyle" TargetType="Label"
+           BasedOn="{StaticResource TitleLabelStyle}">
+        <Setter Property="FontSize" Value="{StaticResource LogoLabelSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource Calligraphy}" />
+        <Setter Property="TextColor" Value="{StaticResource RedColor}" />
     </Style>
 
     <Style x:Key="DetailLabelStyle" TargetType="Label">
@@ -59,5 +114,94 @@
         <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
         <Setter Property="HorizontalTextAlignment" Value="Start" />
         <Setter Property="VerticalTextAlignment" Value="Center" />
+    </Style>
+
+    <Style TargetType="ActivityIndicator">
+        <Setter Property="Color" Value="{StaticResource WhiteColor}" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+    </Style>
+
+    <Style x:Key="BoxviewBackgroundStyle" TargetType="BoxView">
+        <Setter Property="BackgroundColor" Value="{StaticResource TransparentColor}" />
+        <Setter Property="VerticalOptions" Value="FillAndExpand" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+    </Style>
+
+    <Style x:Key="BaseImageStyle" TargetType="Image">
+        <Setter Property="BackgroundColor" Value="{StaticResource BlackColor}" />
+        <Setter Property="Aspect" Value="AspectFit" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="WidthRequest" Value="40" />
+        <Setter Property="VerticalOptions" Value="End" />
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+    </Style>
+
+    <Style x:Key="BaseButtonStyle" TargetType="Button">
+        <Setter Property="FontSize" Value="{StaticResource MediumLabelSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource PrimaryFontRegular}" />
+        <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource BlackColor}" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="WidthRequest" Value="100" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+    </Style>
+
+    <Style TargetType="Frame">
+        <Setter Property="BackgroundColor" Value="{StaticResource TransparentColor}" />
+        <Setter Property="BorderColor" Value="{StaticResource BlackColor}" />
+        <Setter Property="Padding" Value="{StaticResource padding_0}" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="HasShadow" Value="True" />
+        <Setter Property="VerticalOptions" Value="FillAndExpand" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+    </Style>
+
+    <Style x:Key="ImageBorderStyle" TargetType="Frame">
+        <Setter Property="Padding" Value="{StaticResource padding_5}" />
+        <Setter Property="CornerRadius" Value="5" />
+    </Style>
+
+    <Style x:Key="HomeBackgroundStyle" TargetType="StackLayout">
+        <Setter Property="VerticalOptions" Value="FillAndExpand" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        <Setter Property="Background">
+            <RadialGradientBrush Center="0.5,0.5"
+                                     Radius="0.5">
+                    <GradientStop Color="{StaticResource WhiteColor}"
+                                  Offset="0.1"/>
+                    <GradientStop Color="{StaticResource BlackColor}"
+                                  Offset="1.0"/>
+                </RadialGradientBrush>
+        </Setter>
+    </Style>
+
+    <Style x:Key="AppBackgroundStyle" TargetType="Grid">
+        <Setter Property="VerticalOptions" Value="FillAndExpand" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        <Setter Property="Background">
+            <RadialGradientBrush Center="0.5,0.5"
+                                     Radius="0.5">
+                    <GradientStop Color="{StaticResource WhiteColor}"
+                                  Offset="0.1"/>
+                    <GradientStop Color="{StaticResource BlackColor}"
+                                  Offset="1.0"/>
+                </RadialGradientBrush>
+        </Setter>
+    </Style>
+
+    <Style x:Key="BaseGridStyle" TargetType="Grid">
+        <Setter Property="Padding" Value="{StaticResource padding_10}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource TransparentColor}" />
+        <Setter Property="VerticalOptions" Value="FillAndExpand" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+    </Style>
+
+    <Style x:Key="BaseStackStyle" TargetType="StackLayout">
+        <Setter Property="Padding" Value="{StaticResource padding_10}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource TransparentColor}" />
+        <Setter Property="VerticalOptions" Value="FillAndExpand" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
     </Style>
 </ResourceDictionary>

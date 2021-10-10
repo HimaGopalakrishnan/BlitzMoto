@@ -2,8 +2,9 @@
 <?xaml-comp compile="true" ?>
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                    xmlns:converters="clr-namespace:App.Converters">
+                    xmlns:converters="clr-namespace:App.Converters"
+                    xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.Converters;assembly=Xamarin.CommunityToolkit">
     
-    <converters:BoolToInverseConverter x:Key="BoolToInverseConverter" />
-    <converters:EmptyStringToBoolConverter x:Key="EmptyStringToBoolConverter" />
+    <converters:PasswordEyeVisibilityConverter x:Key="PasswordEyeVisibilityConverter" />
+    <xct:InvertedBoolConverter x:Key="InvertedBoolConverter" />
 </ResourceDictionary>

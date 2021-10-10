@@ -74,40 +74,13 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1024.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon180.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon167.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon152.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon120.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon87.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon80.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon76.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon60.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon58.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon40.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon29.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
@@ -116,54 +89,38 @@
     <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~comany.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%402x~ipad~anyany.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~comany-1.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~comany-2.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~comany-3.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~comany-4.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~comany-5.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany-1.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany-2.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany-3.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany-4.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany-5.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany-6.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany-7.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\Default%403x~iphone~anyany-8.png">
-      <Visible>false</Visible>
-    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\40.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\60.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\58.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\87.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\80.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\120.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\120-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\180.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\40-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\80-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\29.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\58-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\40-2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\1024.png" />
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\40.png" />
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\60.png" />
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\80.png" />
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\60-1.png" />
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\120.png" />
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\180.png" />
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\80-1.png" />
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\120-1.png" />
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\120-2.png" />
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\114.png" />
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\57.png" />
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\1024.png" />
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\1024-1.png" />
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\1024-2.png" />
+    <ImageAsset Include="Assets.xcassets\SplashIcon.imageset\1024-3.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -176,6 +133,9 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="FirebaseDatabase.net">
+      <Version>4.0.6</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -186,8 +146,41 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\SplashIcon.imageset\" />
-    <BundleResource Include="Resources\dashboard%401x.png" />
+    <BundleResource Include="Resources\dashboard.png" />
     <BundleResource Include="Resources\dashboard%402x.png" />
     <BundleResource Include="Resources\dashboard%403x.png" />
+    <BundleResource Include="Resources\menu.png" />
+    <BundleResource Include="Resources\menu%402x.png" />
+    <BundleResource Include="Resources\menu%403x.png" />
+    <BundleResource Include="Resources\phone.png" />
+    <BundleResource Include="Resources\phone%402x.png" />
+    <BundleResource Include="Resources\phone%403x.png" />
+    <BundleResource Include="Resources\ic_instagram%403x.png" />
+    <BundleResource Include="Resources\ic_instagram%402x.png" />
+    <BundleResource Include="Resources\ic_instagram.png" />
+    <BundleResource Include="Resources\location%403x.png" />
+    <BundleResource Include="Resources\location%402x.png" />
+    <BundleResource Include="Resources\location.png" />
+    <BundleResource Include="Resources\gmail.png" />
+    <BundleResource Include="Resources\gmail%402x.png" />
+    <BundleResource Include="Resources\gmail%403x.png" />
+    <BundleResource Include="Resources\facebook.png" />
+    <BundleResource Include="Resources\facebook%402x.png" />
+    <BundleResource Include="Resources\facebook%403x.png" />
+    <BundleResource Include="Resources\instagram.png" />
+    <BundleResource Include="Resources\instagram%402x.png" />
+    <BundleResource Include="Resources\instagram%403x.png" />
+    <BundleResource Include="Resources\whatsapp.png" />
+    <BundleResource Include="Resources\whatsapp%402x.png" />
+    <BundleResource Include="Resources\whatsapp%403x.png" />
+    <BundleResource Include="Resources\ic_logo.png" />
+    <BundleResource Include="Resources\ic_logo%402x.png" />
+    <BundleResource Include="Resources\ic_logo%403x.png" />
+    <BundleResource Include="Resources\app_icon.png" />
+    <BundleResource Include="Resources\app_icon%402x.png" />
+    <BundleResource Include="Resources\app_icon%403x.png" />
+    <BundleResource Include="Resources\call.png" />
+    <BundleResource Include="Resources\call%402x.png" />
+    <BundleResource Include="Resources\call%403x.png" />
   </ItemGroup>
 </Project>
