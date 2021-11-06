@@ -50,6 +50,16 @@
         <Setter Property="WidthRequest" Value="30" />
     </Style>
 
+    <Style TargetType="Entry">
+        <Setter Property="FontSize" Value="{StaticResource MediumLabelSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource PrimaryFontRegular}" />
+        <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+        <Setter Property="HorizontalOptions" Value="Fill" />
+    </Style>
+
     <Style x:Key="BaseLabelStyle" TargetType="Label">
         <Setter Property="FontSize" Value="{StaticResource MediumLabelSize}" />
         <Setter Property="FontFamily" Value="{StaticResource PrimaryFontRegular}" />
@@ -59,6 +69,24 @@
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="HorizontalTextAlignment" Value="Start" />
         <Setter Property="HorizontalOptions" Value="Start" />
+    </Style>
+
+    <Style
+        x:Key="ValidationErrorLabelStyle"
+        BasedOn="{StaticResource BaseLabelStyle}"
+        TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource RedColor}" />
+        <Setter Property="FontSize" Value="{StaticResource MicroLabelSize}" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+    </Style>
+
+    <Style
+        x:Key="PlaceholderLabelStyle"
+        BasedOn="{StaticResource ValidationErrorLabelStyle}"
+        TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource GrayColor}" />
+        <Setter Property="FontSize" Value="{StaticResource SmallestLabelSize}" />
     </Style>
 
     <Style x:Key="HomeLabelStyle" TargetType="Label">
@@ -153,7 +181,6 @@
         <Setter Property="BorderColor" Value="{StaticResource BlackColor}" />
         <Setter Property="Padding" Value="{StaticResource padding_0}" />
         <Setter Property="CornerRadius" Value="10" />
-        <Setter Property="HasShadow" Value="True" />
         <Setter Property="VerticalOptions" Value="FillAndExpand" />
         <Setter Property="HorizontalOptions" Value="FillAndExpand" />
     </Style>

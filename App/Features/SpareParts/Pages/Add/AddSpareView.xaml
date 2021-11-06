@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModelBase="clr-namespace:App;assembly=App"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    x:Class="App.Features.SpareParts.Pages.Add.AddSpareView">
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*,Auto"
+          Style="{StaticResource BaseGridStyle}">
+        <Label Text="Part No" Style="{StaticResource PlaceholderLabelStyle}"/>
+        <Entry Grid.Row="1" Text="{Binding PartNumber}"/>
+        <Label Grid.Row="2" Text="Spare Name" Style="{StaticResource PlaceholderLabelStyle}"/>
+        <Entry Grid.Row="3" Text="{Binding Spare}"/>
+        <Label Grid.Row="4" Text="Quantity" Style="{StaticResource PlaceholderLabelStyle}"/>
+        <Entry Grid.Row="5" Text="{Binding Quantity}"/>
+        <Label Grid.Row="6" Text="Unit Price" Style="{StaticResource PlaceholderLabelStyle}"/>
+        <Entry Grid.Row="7" Text="{Binding Price}"/>
+        <Button Grid.Row="9" Text="Add"
+                Style="{StaticResource BaseButtonStyle}"
+                Command="{Binding AddCommand}"/>
+    </Grid>
+</ContentPage>

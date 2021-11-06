@@ -1,8 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using App.Features.About.Pages;
 using App.Features.Accessories.Pages.List;
-using App.Features.ToDo.Pages.List;
+using App.Features.Home;
+using App.Features.SpareParts.Pages.List;
+using App.Features.User.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -29,11 +32,11 @@ namespace App.Features.Menu.Pages
             {
                 MenuItems = new ObservableCollection<MenuViewFlyoutMenuItem>(new[]
                 {
-                    new MenuViewFlyoutMenuItem { Id = 0, Title = "Home",TargetType=typeof(ItemListView) },
-                    new MenuViewFlyoutMenuItem { Id = 1, Title = "Spare Parts",TargetType=typeof(ItemListView) },
+                    new MenuViewFlyoutMenuItem { Id = 0, Title = "Home",TargetType=typeof(HomeView) },
+                    new MenuViewFlyoutMenuItem { Id = 1, Title = "Spare Parts",TargetType=typeof(SpareListView) },
                     new MenuViewFlyoutMenuItem { Id = 2, Title = "Accessories",TargetType=typeof(AccessoriesListView) },
-                    new MenuViewFlyoutMenuItem { Id = 3, Title = "Login",TargetType=typeof(ItemListView) },
-                    new MenuViewFlyoutMenuItem { Id = 4, Title = "About us",TargetType=typeof(ItemListView) },
+                    new MenuViewFlyoutMenuItem { Id = 3, Title = "Login",TargetType=typeof(LoginView) },
+                    new MenuViewFlyoutMenuItem { Id = 4, Title = "About us",TargetType=typeof(AboutUsView) },
                 });
             }
 

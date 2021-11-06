@@ -1,5 +1,4 @@
-﻿using App.Features.Accessories.Models;
-using App.Features.Accessories.Pages.Add;
+﻿using App.Features.Accessories.Pages.Add;
 using App.Features.Accessories.Services;
 using App.Providers.Navigation.Services;
 using App.Providers.Navigation.Base;
@@ -7,19 +6,20 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using App.Features.SpareParts.Models;
 using App.Providers.Database.Services;
 
-namespace App.Features.Accessories.Pages.List
+namespace App.Features.SpareParts.Pages.List
 {
-    public class AccessoriesListViewModel : ViewModelBase
+    public class SpareListViewModel : ViewModelBase
     {
         #region Properties
 
-        ObservableCollection<Accessory> _accessories;
-        public ObservableCollection<Accessory> Accessories
+        ObservableCollection<SparePart> _spares;
+        public ObservableCollection<SparePart> Spares
         {
-            get => _accessories;
-            set => SetProperty(ref _accessories, value);
+            get => _spares;
+            set => SetProperty(ref _spares, value);
         }
 
         #endregion
@@ -40,8 +40,8 @@ namespace App.Features.Accessories.Pages.List
 
         #region Constructor
 
-        public AccessoriesListViewModel(ISQLiteService sqliteService, INavigationService navigationService,
-                                        IAccessoriesService accessoriesService)
+        public SpareListViewModel(ISQLiteService sqliteService, INavigationService navigationService,
+                                  IAccessoriesService accessoriesService)
         {
             _sqliteService = sqliteService;
             _navigationService = navigationService;
@@ -60,8 +60,8 @@ namespace App.Features.Accessories.Pages.List
 
         public async Task GetItems()
         {
-            var accessories = await _sqliteService.GetAllItemsAsync<Accessory>();
-            Accessories = new ObservableCollection<Accessory>(accessories);
+            var spares = await _sqliteService.GetAllItemsAsync<SparePart>();
+            Spares = new ObservableCollection<SparePart>(spares);
         }
 
         #endregion

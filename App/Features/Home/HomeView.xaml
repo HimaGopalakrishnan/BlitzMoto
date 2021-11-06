@@ -3,28 +3,54 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="App.Features.Home.HomeView"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+    xmlns:viewModelBase="clr-namespace:App;assembly=App"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    x:Name="home">
     <ContentPage.Content>
-        <Grid RowDefinitions="*,*,*,*,*,*,Auto,Auto"
+        <Grid RowDefinitions="*,*,*,*,*,*,Auto,*"
               ColumnDefinitions="*,*"
               Style="{StaticResource BaseGridStyle}">
             <Frame Grid.ColumnSpan="2">
                 <Label Text="Accessories" Style="{StaticResource HomeLabelStyle}"/>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BindingContext.NavigationCommand,Source={x:Reference home}}"
+                                          CommandParameter="Accessories"/>
+                </Frame.GestureRecognizers>
             </Frame>
             <Frame Grid.Row="1" Grid.ColumnSpan="2">
                 <Label Text="Riding Gears" Style="{StaticResource HomeLabelStyle}"/>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigationCommand}"/>
+                </Frame.GestureRecognizers>
             </Frame>
             <Frame Grid.Row="2" Grid.ColumnSpan="2">
                 <Label Text="Power Parts" Style="{StaticResource HomeLabelStyle}"/>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigationCommand}"
+                                          CommandParameter="Accessories"/>
+                </Frame.GestureRecognizers>
             </Frame>
             <Frame Grid.Row="3" Grid.ColumnSpan="2">
                 <Label Text="Apparels" Style="{StaticResource HomeLabelStyle}"/>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigationCommand}"
+                                          CommandParameter="Accessories"/>
+                </Frame.GestureRecognizers>
             </Frame>
             <Frame Grid.Row="4" Grid.ColumnSpan="2">
                 <Label Text="Service Prebooking" Style="{StaticResource HomeLabelStyle}"/>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigationCommand}"
+                                          CommandParameter="Accessories"/>
+                </Frame.GestureRecognizers>
             </Frame>
             <Frame Grid.Row="5" Grid.ColumnSpan="2">
                 <Label Text="Spare Booking" Style="{StaticResource HomeLabelStyle}"/>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigationCommand}"
+                                          CommandParameter="Accessories"/>
+                </Frame.GestureRecognizers>
             </Frame>
             <ffimageloading:CachedImage Grid.Row="6"
                                         Source="whatsapp"
@@ -48,12 +74,24 @@
                              HorizontalOptions="End">
                     <Frame Style="{StaticResource ImageBorderStyle}">
                         <ffimageloading:CachedImage Source="facebook" Style="{StaticResource IconStyle}"/>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NavigationCommand}"
+                                                  CommandParameter="Accessories"/>
+                        </Frame.GestureRecognizers>
                     </Frame>
                     <Frame Style="{StaticResource ImageBorderStyle}">
                         <ffimageloading:CachedImage Source="call" Style="{StaticResource IconStyle}"/>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NavigationCommand}"
+                                                  CommandParameter="Accessories"/>
+                        </Frame.GestureRecognizers>
                     </Frame>
                     <Frame Style="{StaticResource ImageBorderStyle}">
                         <ffimageloading:CachedImage Source="gmail" Style="{StaticResource IconStyle}"/>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NavigationCommand}"
+                                                  CommandParameter="Accessories"/>
+                        </Frame.GestureRecognizers>
                     </Frame>
                 </StackLayout>
             </Grid>

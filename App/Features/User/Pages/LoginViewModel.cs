@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
-using System.Windows.Input;
-using App.Provider.Navigation.Services;
-using App.Providers.Dialog.Services;
+﻿using App.Providers.Dialog.Services;
 using App.Providers.Navigation.Base;
+using App.Providers.Navigation.Services;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace App.Features.User.Pages

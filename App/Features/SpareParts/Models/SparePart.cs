@@ -1,8 +1,8 @@
 ﻿using App.Providers.Database.Models;
 
-namespace App.Features.Accessories.Models
+namespace App.Features.SpareParts.Models
 {
-    public class Accessory : BaseModel
+    public class SparePart : BaseModel
     {
         public string Number { get; set; }
         public string Name { get; set; }

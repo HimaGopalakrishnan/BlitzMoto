@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
-using App.Providers.Navigation.Base;
+﻿using App.Providers.Navigation.Base;
 using App.Providers.Navigation.Enums;
+using System.Threading.Tasks;
 
-namespace App.Provider.Navigation.Services
+namespace App.Providers.Navigation.Services
 {
     public interface INavigationService
     {

@@ -7,25 +7,20 @@
     viewModelBase:ViewModelLocator.AutoWireViewModel="true">
     <ContentPage.Content>
         <StackLayout Style="{StaticResource BaseStackStyle}">
-            <Grid RowDefinitions="*,*,*,*,*,*" ColumnDefinitions="*,*"
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*,Auto"
                   Style="{StaticResource BaseGridStyle}">
-                <Entry Grid.ColumnSpan="2" Placeholder="Part No"
-                              Text="{Binding PartNumber}"/>
-                <Entry Grid.Row="1" Grid.ColumnSpan="2"
-                              Placeholder="Accessory Name"
-                              Text="{Binding Accessory}"/>
-                <Entry Grid.Row="2" Grid.ColumnSpan="2"
-                              Placeholder="Quantity"
-                              Text="{Binding Quantity}"
-                       Keyboard="Numeric"/>
-                <Entry Grid.Row="3" Grid.ColumnSpan="2"
-                              Placeholder="Unit Price"
-                              Text="{Binding Price}"
-                       Keyboard="Numeric"/>
-                <Button Grid.Row="5" Grid.ColumnSpan="2" Text="Add"
+                <Label Text="Part No" Style="{StaticResource PlaceholderLabelStyle}"/>
+                <Entry Grid.Row="1" Text="{Binding PartNumber}"/>
+                <Label Grid.Row="2" Text="Accessory Name" Style="{StaticResource PlaceholderLabelStyle}"/>
+                <Entry Grid.Row="3" Text="{Binding Accessory}"/>
+                <Label Grid.Row="4" Text="Quantity" Style="{StaticResource PlaceholderLabelStyle}"/>
+                <Entry Grid.Row="5" Text="{Binding Quantity}"/>
+                <Label Grid.Row="6" Text="Unit Price" Style="{StaticResource PlaceholderLabelStyle}"/>
+                <Entry Grid.Row="7" Text="{Binding Price}"/>
+                <Button Grid.Row="9" Text="Add"
                         Style="{StaticResource BaseButtonStyle}"
                         Command="{Binding AddCommand}"/>
-        </Grid>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

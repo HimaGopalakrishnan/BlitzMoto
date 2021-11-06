@@ -68,6 +68,7 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controls\BorderlessEntryRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -182,5 +183,9 @@
     <BundleResource Include="Resources\call.png" />
     <BundleResource Include="Resources\call%402x.png" />
     <BundleResource Include="Resources\call%403x.png" />
+    <BundleResource Include="Resources\add%403x.png" />
+    <BundleResource Include="Resources\add%402x.png" />
+    <BundleResource Include="Resources\add.png" />
+    <Folder Include="Controls\" />
   </ItemGroup>
 </Project>

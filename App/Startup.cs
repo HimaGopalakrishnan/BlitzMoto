@@ -5,22 +5,20 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Polly;
 using Xamarin.Essentials;
-using App.Features.List.Services;
 using Refit;
-using Provider.Navigation.Services;
 using App.Providers.Dialog.Services;
 using App.Providers.Analytics.Services;
 using App.Providers.Api.Services;
 using App.Providers.Cache.Services;
 using App.Constants;
-using App.Features.ToDo.Services;
-using App.Features.ToDo.Pages.Detail;
-using App.Features.ToDo.Pages.List;
-using App.Provider.Navigation.Services;
+using App.Providers.Navigation.Services;
 using App.Features.Menu.Pages;
 using App.Features.Accessories.Services;
 using App.Features.Accessories.Pages.List;
 using App.Features.Accessories.Pages.Add;
+using Providers.Navigation.Services;
+using App.Features.Api;
+using App.Providers.Database.Services;
 
 namespace App
 {
@@ -59,8 +57,6 @@ namespace App
         {
             #region Features/ToDo
 
-            services.AddTransient<ItemListViewModel>();
-            services.AddTransient<ItemDetailViewModel>();
             services.AddTransient<AccessoriesListViewModel>();
             services.AddTransient<AddAccessoriesViewModel>();
             services.AddTransient<MenuViewModel>();
@@ -69,6 +65,7 @@ namespace App
 
             #region Providers
 
+            services.AddTransient<ISQLiteService, SQLiteService>();
             services.AddTransient<INavigationService, NavigationService>();
             services.AddTransient<IDialogService, DialogService>();
             services.AddTransient<IAnalyticsService, AnalyticsService>();
@@ -91,7 +88,7 @@ namespace App
 
             var timeoutPolicy = Policy.TimeoutAsync<HttpResponseMessage>(Api.ApiTimeOut);
 
-            services.AddRefitClient<IItemsApi>()
+            services.AddRefitClient<IBlitzApi>()
                     .AddPolicyHandler(timeoutPolicy)
                     .ConfigureHttpClient(c =>
                     {
@@ -105,7 +102,6 @@ namespace App
             if (IsMock)
             {
                 //register mock service classes here
-                services.AddTransient<IItemsService, MockItemsService>();
                 services.AddTransient<ICacheService, MockCacheService>();
                 services.AddTransient<IAnalyticsService, MockAnalyticsService>();
             }

@@ -1,15 +1,15 @@
-﻿using System;
+﻿using App.Providers.Navigation.Base;
+using App.Providers.Navigation.Controls;
+using App.Providers.Navigation.Enums;
+using App.Providers.Navigation.Services;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 using System.Threading.Tasks;
-using App.Provider.Navigation.Services;
-using App.Providers.Navigation.Base;
-using App.Providers.Navigation.Controls;
-using App.Providers.Navigation.Enums;
 using Xamarin.Forms;
 
-namespace Provider.Navigation.Services
+namespace Providers.Navigation.Services
 {
     public class NavigationService : INavigationService
     {

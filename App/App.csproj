@@ -28,6 +28,7 @@
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="FirebaseDatabase.net" Version="4.0.6" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.2.0" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Microsoft.Extensions.Http" />
@@ -54,8 +55,6 @@
     <None Remove="akavache" />
     <None Remove="Features\New Folder\" />
     <None Remove="ToDo\" />
-    <None Remove="Features\ToDo\Pages\List\" />
-    <None Remove="Features\ToDo\Pages\Detail\" />
     <None Remove="Providers\" />
     <None Remove="Providers\Analytics\" />
     <None Remove="Providers\Api\" />
@@ -94,13 +93,19 @@
     <None Remove="Features\Accessories\Pages\List\" />
     <None Remove="Features\Accessories\Pages\Add\" />
     <None Remove="Xamarin.CommunityToolkit" />
+    <None Remove="Providers\Database\" />
+    <None Remove="Providers\Database\Services\" />
+    <None Remove="sqlite-net-pcl" />
+    <None Remove="Providers\Database\Models\" />
+    <None Remove="Providers\Database\Constants\" />
+    <None Remove="Features\SpareParts\Pages\Add\" />
+    <None Remove="Features\SpareParts\Pages\List\" />
+    <None Remove="Features\Api\" />
+    <None Remove="Controls\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Constants\" />
     <Folder Include="Resx\" />
-    <Folder Include="Features\ToDo\" />
-    <Folder Include="Features\ToDo\Pages\List\" />
-    <Folder Include="Features\ToDo\Pages\Detail\" />
     <Folder Include="Providers\" />
     <Folder Include="Providers\Analytics\" />
     <Folder Include="Providers\Api\" />
@@ -131,6 +136,14 @@
     <Folder Include="Features\About\Pages\" />
     <Folder Include="Features\Accessories\Pages\List\" />
     <Folder Include="Features\Accessories\Pages\Add\" />
+    <Folder Include="Providers\Database\" />
+    <Folder Include="Providers\Database\Services\" />
+    <Folder Include="Providers\Database\Models\" />
+    <Folder Include="Providers\Database\Constants\" />
+    <Folder Include="Features\SpareParts\Pages\Add\" />
+    <Folder Include="Features\SpareParts\Pages\List\" />
+    <Folder Include="Features\Api\" />
+    <Folder Include="Controls\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\Fonts\calligraphy.otf" />
@@ -171,6 +184,9 @@
     </Compile>
     <Compile Update="Providers\Api\Resx\ApiManagerResources.Designer.cs">
       <DependentUpon>ApiManagerResources.resx</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Controls\BorderlessEntry.cs">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </Compile>
   </ItemGroup>
   <ItemGroup>

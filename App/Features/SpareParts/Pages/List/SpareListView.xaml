@@ -2,14 +2,14 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="App.Features.Accessories.Pages.List.AccessoriesListView"
     xmlns:viewModelBase="clr-namespace:App;assembly=App"
     viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    x:Class="App.Features.SpareParts.Pages.List.SpareListView"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
     <ContentPage.Content>
         <Grid RowDefinitions="*,*"
               Style="{StaticResource BaseGridStyle}">
-            <CollectionView x:Name="list" Grid.RowSpan="2" ItemsSource="{Binding Accessories}">
+            <CollectionView x:Name="list" Grid.RowSpan="2" ItemsSource="{Binding Spares}">
                 <CollectionView.HeaderTemplate>
                     <DataTemplate>
                         <Grid RowDefinitions="*,Auto" ColumnDefinitions="50,*,Auto,Auto"

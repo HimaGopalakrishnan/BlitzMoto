@@ -8,5 +8,6 @@
     <Color x:Key="BlackColor">Black</Color>
     <Color x:Key="PrimaryRedColor">#87040f</Color>
     <Color x:Key="RedColor">Red</Color>
+    <Color x:Key="GrayColor">Gray</Color>
     <Color x:Key="SeparatorColor">#CCCCCC</Color>
 </ResourceDictionary>

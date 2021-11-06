@@ -1,4 +1,4 @@
-﻿using App.Features.Accessories.Models;
+﻿using App.Features.SpareParts.Models;
 using App.Providers.Database.Services;
 using App.Providers.Dialog.Services;
 using App.Providers.Navigation.Base;
@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace App.Features.Accessories.Pages.Add
+namespace App.Features.SpareParts.Pages.Add
 {
-    public class AddAccessoriesViewModel : ViewModelBase
+    public class AddSpareViewModel : ViewModelBase
     {
         #region Services
 
@@ -34,11 +34,11 @@ namespace App.Features.Accessories.Pages.Add
             set => SetProperty(ref _partNumber, value);
         }
 
-        string _accessory;
-        public string Accessory
+        string _spare;
+        public string Spare
         {
-            get => _accessory;
-            set => SetProperty(ref _accessory, value);
+            get => _spare;
+            set => SetProperty(ref _spare, value);
         }
 
         int _quantity;
@@ -59,8 +59,8 @@ namespace App.Features.Accessories.Pages.Add
 
         #region Constructor
 
-        public AddAccessoriesViewModel(ISQLiteService sqliteService, INavigationService navigationService,
-                                       IDialogService dialogService)
+        public AddSpareViewModel(ISQLiteService sqliteService, INavigationService navigationService,
+                                  IDialogService dialogService)
         {
             _sqliteService = sqliteService;
             _navigationService = navigationService;
@@ -78,12 +78,12 @@ namespace App.Features.Accessories.Pages.Add
             bool isValid = Validate();
             if (isValid)
             {
-                var accessory = new Accessory { Number = PartNumber, Name = Accessory, Quantity = Quantity, Price = Price };
+                var accessory = new SparePart { Number = PartNumber, Name = Spare, Quantity = Quantity, Price = Price };
                 var id = await _sqliteService.SaveItemAsync(accessory);
                 if (id > 0)
                 {
                     _dialogService.Toast("Added");
-                    await _navigationService.NavigateToRootAsync();
+                    await _navigationService.RemoveBackStackAsync();
                 }
                 else
                 {
