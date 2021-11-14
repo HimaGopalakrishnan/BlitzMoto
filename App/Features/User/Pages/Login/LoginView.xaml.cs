@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Xamarin.Forms;
 
-using Xamarin.Forms;
-
-namespace App.Features.User.Pages
+namespace App.Features.User.Pages.Login
 {
     public partial class LoginView : ContentPage
     {

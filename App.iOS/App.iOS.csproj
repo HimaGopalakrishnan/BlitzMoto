@@ -187,5 +187,8 @@
     <BundleResource Include="Resources\add%402x.png" />
     <BundleResource Include="Resources\add.png" />
     <Folder Include="Controls\" />
+    <BundleResource Include="Resources\map%403x.png" />
+    <BundleResource Include="Resources\map%402x.png" />
+    <BundleResource Include="Resources\map.png" />
   </ItemGroup>
 </Project>

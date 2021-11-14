@@ -94,5 +94,203 @@ namespace App.Resx {
                 return ResourceManager.GetString("Longitude", resourceCulture);
             }
         }
+        
+        public static string Message_Login {
+            get {
+                return ResourceManager.GetString("Message_Login", resourceCulture);
+            }
+        }
+        
+        public static string Message_Register {
+            get {
+                return ResourceManager.GetString("Message_Register", resourceCulture);
+            }
+        }
+        
+        public static string Message_Enter_Email {
+            get {
+                return ResourceManager.GetString("Message_Enter_Email", resourceCulture);
+            }
+        }
+        
+        public static string Message_Enter_Your_Email {
+            get {
+                return ResourceManager.GetString("Message_Enter_Your_Email", resourceCulture);
+            }
+        }
+        
+        public static string Message_Enter_Password_With_Eight_Characters {
+            get {
+                return ResourceManager.GetString("Message_Enter_Password_With_Eight_Characters", resourceCulture);
+            }
+        }
+        
+        public static string Message_Enter_Password {
+            get {
+                return ResourceManager.GetString("Message_Enter_Password", resourceCulture);
+            }
+        }
+        
+        public static string Message_Enter_Valid_Email {
+            get {
+                return ResourceManager.GetString("Message_Enter_Valid_Email", resourceCulture);
+            }
+        }
+        
+        public static string Message_Enter_FirstName {
+            get {
+                return ResourceManager.GetString("Message_Enter_FirstName", resourceCulture);
+            }
+        }
+        
+        public static string Message_Enter_LastName {
+            get {
+                return ResourceManager.GetString("Message_Enter_LastName", resourceCulture);
+            }
+        }
+        
+        public static string Message_Enter_Contact_Number {
+            get {
+                return ResourceManager.GetString("Message_Enter_Contact_Number", resourceCulture);
+            }
+        }
+        
+        public static string Message_Enter_Valid_Contact_Number {
+            get {
+                return ResourceManager.GetString("Message_Enter_Valid_Contact_Number", resourceCulture);
+            }
+        }
+        
+        public static string Forgot_Password {
+            get {
+                return ResourceManager.GetString("Forgot_Password", resourceCulture);
+            }
+        }
+        
+        public static string Enter_Otp {
+            get {
+                return ResourceManager.GetString("Enter_Otp", resourceCulture);
+            }
+        }
+        
+        public static string Message_Enter_Otp {
+            get {
+                return ResourceManager.GetString("Message_Enter_Otp", resourceCulture);
+            }
+        }
+        
+        public static string Message_Enter_Valid_Otp {
+            get {
+                return ResourceManager.GetString("Message_Enter_Valid_Otp", resourceCulture);
+            }
+        }
+        
+        public static string Reset_Password {
+            get {
+                return ResourceManager.GetString("Reset_Password", resourceCulture);
+            }
+        }
+        
+        public static string Message_Invalid_Input {
+            get {
+                return ResourceManager.GetString("Message_Invalid_Input", resourceCulture);
+            }
+        }
+        
+        public static string Message_Password_Not_Same {
+            get {
+                return ResourceManager.GetString("Message_Password_Not_Same", resourceCulture);
+            }
+        }
+        
+        public static string Message_Login_Failed {
+            get {
+                return ResourceManager.GetString("Message_Login_Failed", resourceCulture);
+            }
+        }
+        
+        public static string Message_User_Verification_Failed {
+            get {
+                return ResourceManager.GetString("Message_User_Verification_Failed", resourceCulture);
+            }
+        }
+        
+        public static string Message_Otp_Verification_Failed {
+            get {
+                return ResourceManager.GetString("Message_Otp_Verification_Failed", resourceCulture);
+            }
+        }
+        
+        public static string Message_Password_Reset {
+            get {
+                return ResourceManager.GetString("Message_Password_Reset", resourceCulture);
+            }
+        }
+        
+        public static string Message_Password_Reset_Failed {
+            get {
+                return ResourceManager.GetString("Message_Password_Reset_Failed", resourceCulture);
+            }
+        }
+        
+        public static string Message_Register_Failed {
+            get {
+                return ResourceManager.GetString("Message_Register_Failed", resourceCulture);
+            }
+        }
+        
+        public static string Message_Dont_Have_Account {
+            get {
+                return ResourceManager.GetString("Message_Dont_Have_Account", resourceCulture);
+            }
+        }
+        
+        public static string Login_Message {
+            get {
+                return ResourceManager.GetString("Login_Message", resourceCulture);
+            }
+        }
+        
+        public static string Register_Message {
+            get {
+                return ResourceManager.GetString("Register_Message", resourceCulture);
+            }
+        }
+        
+        public static string Enter_Valid_Data {
+            get {
+                return ResourceManager.GetString("Enter_Valid_Data", resourceCulture);
+            }
+        }
+        
+        public static string Enter_Valid_Name {
+            get {
+                return ResourceManager.GetString("Enter_Valid_Name", resourceCulture);
+            }
+        }
+        
+        public static string Enter_Valid_Amount {
+            get {
+                return ResourceManager.GetString("Enter_Valid_Amount", resourceCulture);
+            }
+        }
+        
+        public static string Enter_Valid_Quantity {
+            get {
+                return ResourceManager.GetString("Enter_Valid_Quantity", resourceCulture);
+            }
+        }
+        
+        public static string Data_Added {
+            get {
+                return ResourceManager.GetString("Data_Added", resourceCulture);
+            }
+        }
+        
+        public static string SomethingWronMessage {
+            get {
+                return ResourceManager.GetString("SomethingWronMessage", resourceCulture);
+            }
+        }
     }
 }

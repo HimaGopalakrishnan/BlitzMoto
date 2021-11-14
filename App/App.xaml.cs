@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using App.Constants;
+using App.Features.Home;
 using App.Features.Menu.Pages;
 using App.Providers.Navigation.Services;
 using App.Resx;
@@ -64,7 +65,7 @@ namespace App
 
         async Task SetMainPage()
         {
-            await _navigationService.NavigateToAsync<MenuViewModel>();
+            await _navigationService.NavigateToAsync<HomeViewModel>();
         }
 
         #endregion

@@ -100,8 +100,9 @@
     <None Remove="Providers\Database\Constants\" />
     <None Remove="Features\SpareParts\Pages\Add\" />
     <None Remove="Features\SpareParts\Pages\List\" />
-    <None Remove="Features\Api\" />
     <None Remove="Controls\" />
+    <None Remove="Features\User\Pages\Login\" />
+    <None Remove="Features\User\Pages\Register\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Constants\" />
@@ -142,8 +143,9 @@
     <Folder Include="Providers\Database\Constants\" />
     <Folder Include="Features\SpareParts\Pages\Add\" />
     <Folder Include="Features\SpareParts\Pages\List\" />
-    <Folder Include="Features\Api\" />
     <Folder Include="Controls\" />
+    <Folder Include="Features\User\Pages\Login\" />
+    <Folder Include="Features\User\Pages\Register\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\Fonts\calligraphy.otf" />
@@ -154,9 +156,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Features\Menu\Pages\MenuView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Features\Menu\Pages\MenuViewDetail.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Features\Menu\Pages\MenuViewFlyout.xaml">

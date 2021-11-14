@@ -8,5 +8,11 @@
         public const string Apparels = "Apparels";
         public const string Service = "Service";
         public const string Spare = "Spare";
+        public const string Whatsapp = "Whatsapp";
+        public const string Instagram = "Instagram";
+        public const string Facebook = "Facebook";
+        public const string Map = "Map";
+        public const string Call = "Call";
+        public const string Mail = "Mail";
     }
 }

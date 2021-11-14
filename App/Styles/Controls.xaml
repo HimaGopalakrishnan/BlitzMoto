@@ -85,7 +85,7 @@
         x:Key="PlaceholderLabelStyle"
         BasedOn="{StaticResource ValidationErrorLabelStyle}"
         TargetType="Label">
-        <Setter Property="TextColor" Value="{StaticResource GrayColor}" />
+        <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
         <Setter Property="FontSize" Value="{StaticResource SmallestLabelSize}" />
     </Style>
 
@@ -131,7 +131,7 @@
     <Style x:Key="LogoLabelStyle" TargetType="Label"
            BasedOn="{StaticResource TitleLabelStyle}">
         <Setter Property="FontSize" Value="{StaticResource LogoLabelSize}" />
-        <Setter Property="FontFamily" Value="{StaticResource Calligraphy}" />
+        <Setter Property="FontFamily" Value="{StaticResource CondensedBoldItalic}" />
         <Setter Property="TextColor" Value="{StaticResource RedColor}" />
     </Style>
 

@@ -6,5 +6,6 @@
                     xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.Converters;assembly=Xamarin.CommunityToolkit">
     
     <converters:PasswordEyeVisibilityConverter x:Key="PasswordEyeVisibilityConverter" />
+    <converters:EntryErrorConverter x:Key="EntryErrorConverter" />
     <xct:InvertedBoolConverter x:Key="InvertedBoolConverter" />
 </ResourceDictionary>

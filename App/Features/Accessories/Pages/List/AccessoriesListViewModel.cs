@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using App.Providers.Database.Services;
+using App.Providers.Api.Services;
+using App.Providers.Dialog.Services;
+using App.Resx;
 
 namespace App.Features.Accessories.Pages.List
 {
@@ -26,9 +29,11 @@ namespace App.Features.Accessories.Pages.List
 
         #region Services
 
+        readonly IApiCallManager _apiCallManager;
         readonly ISQLiteService _sqliteService;
         readonly INavigationService _navigationService;
         readonly IAccessoriesService _accessoriesService;
+        readonly IDialogService _dialogService;
 
         #endregion
 
@@ -40,12 +45,15 @@ namespace App.Features.Accessories.Pages.List
 
         #region Constructor
 
-        public AccessoriesListViewModel(ISQLiteService sqliteService, INavigationService navigationService,
-                                        IAccessoriesService accessoriesService)
+        public AccessoriesListViewModel(IApiCallManager apiCallManager, ISQLiteService sqliteService,
+                                        INavigationService navigationService, IAccessoriesService accessoriesService,
+                                        IDialogService dialogService)
         {
+            _apiCallManager = apiCallManager;
             _sqliteService = sqliteService;
             _navigationService = navigationService;
             _accessoriesService = accessoriesService;
+            _dialogService = dialogService;
             AddIconTappedCommand = new Command(async () => await AddIconTapped());
         }
 
@@ -60,8 +68,18 @@ namespace App.Features.Accessories.Pages.List
 
         public async Task GetItems()
         {
-            var accessories = await _sqliteService.GetAllItemsAsync<Accessory>();
-            Accessories = new ObservableCollection<Accessory>(accessories);
+            await _apiCallManager.ExecuteCall(() => _accessoriesService.GetAllAccessories(),
+                    accessories =>
+                    {
+                        Accessories = new ObservableCollection<Accessory>(accessories);
+                    },
+                    async error =>
+                    {
+                        var accessories = await _sqliteService.GetAllItemsAsync<Accessory>();
+                        Accessories = new ObservableCollection<Accessory>(accessories);
+                        _dialogService.HideLoading();
+
+                    }, true, AppResources.Loading);
         }
 
         #endregion

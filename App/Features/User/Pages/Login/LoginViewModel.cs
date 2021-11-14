@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace App.Features.User.Pages
+namespace App.Features.User.Pages.Login
 {
     public class LoginViewModel : ViewModelBase
     {

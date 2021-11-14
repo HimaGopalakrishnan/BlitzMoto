@@ -4,19 +4,24 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="App.Features.Accessories.Pages.Add.AddAccessoriesView"
     xmlns:viewModelBase="clr-namespace:App;assembly=App"
-    viewModelBase:ViewModelLocator.AutoWireViewModel="true">
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    xmlns:controls="clr-namespace:App.Controls">
     <ContentPage.Content>
         <StackLayout Style="{StaticResource BaseStackStyle}">
             <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*,Auto"
                   Style="{StaticResource BaseGridStyle}">
                 <Label Text="Part No" Style="{StaticResource PlaceholderLabelStyle}"/>
-                <Entry Grid.Row="1" Text="{Binding PartNumber}"/>
+                <controls:ValidatorControl Grid.Row="1" Text="{Binding PartNumber.Value,Mode=TwoWay}"
+                                           ErrorText="{Binding PartNumber.Errors,Converter={StaticResource EntryErrorConverter}}"/>
                 <Label Grid.Row="2" Text="Accessory Name" Style="{StaticResource PlaceholderLabelStyle}"/>
-                <Entry Grid.Row="3" Text="{Binding Accessory}"/>
+                <controls:ValidatorControl Grid.Row="3" Text="{Binding Accessory.Value,Mode=TwoWay}"
+                                           ErrorText="{Binding Accessory.Errors,Converter={StaticResource EntryErrorConverter}}"/>
                 <Label Grid.Row="4" Text="Quantity" Style="{StaticResource PlaceholderLabelStyle}"/>
-                <Entry Grid.Row="5" Text="{Binding Quantity}"/>
+                <controls:ValidatorControl Grid.Row="5" Text="{Binding Quantity.Value,Mode=TwoWay}"
+                                           ErrorText="{Binding Quantity.Errors,Converter={StaticResource EntryErrorConverter}}"/>
                 <Label Grid.Row="6" Text="Unit Price" Style="{StaticResource PlaceholderLabelStyle}"/>
-                <Entry Grid.Row="7" Text="{Binding Price}"/>
+                <controls:ValidatorControl Grid.Row="7" Text="{Binding Price.Value,Mode=TwoWay}"
+                                           ErrorText="{Binding Price.Errors,Converter={StaticResource EntryErrorConverter}}"/>
                 <Button Grid.Row="9" Text="Add"
                         Style="{StaticResource BaseButtonStyle}"
                         Command="{Binding AddCommand}"/>

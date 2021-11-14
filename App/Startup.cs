@@ -1,24 +1,22 @@
-﻿using System;
-using System.Net.Http;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Polly;
-using Xamarin.Essentials;
-using Refit;
-using App.Providers.Dialog.Services;
+﻿using App.Features.Accessories.Pages.List;
+using App.Features.Accessories.Pages.Add;
+using App.Features.Accessories.Services;
+using App.Features.Home;
+using App.Features.Menu.Pages;
+using App.Features.SpareParts.Services;
+using App.Features.User.Services;
 using App.Providers.Analytics.Services;
 using App.Providers.Api.Services;
 using App.Providers.Cache.Services;
-using App.Constants;
-using App.Providers.Navigation.Services;
-using App.Features.Menu.Pages;
-using App.Features.Accessories.Services;
-using App.Features.Accessories.Pages.List;
-using App.Features.Accessories.Pages.Add;
-using Providers.Navigation.Services;
-using App.Features.Api;
 using App.Providers.Database.Services;
+using App.Providers.Dialog.Services;
+using App.Providers.Navigation.Services;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Providers.Navigation.Services;
+using System;
+using Xamarin.Essentials;
 
 namespace App
 {
@@ -57,9 +55,10 @@ namespace App
         {
             #region Features/ToDo
 
+            services.AddTransient<MenuViewModel>();
+            services.AddTransient<HomeViewModel>();
             services.AddTransient<AccessoriesListViewModel>();
             services.AddTransient<AddAccessoriesViewModel>();
-            services.AddTransient<MenuViewModel>();
 
             #endregion
 
@@ -73,27 +72,15 @@ namespace App
             services.AddTransient<IRetryService, RetryService>();
             services.AddTransient<ICacheService, CacheService>();
 
+            services.AddSingleton<IAccessoriesService, AccessoriesService>();
+            services.AddSingleton<ISpareService, SpareService>();
+            services.AddSingleton<IUserService, UserService>();
+
             #endregion
 
             #region Services
 
             services.AddTransient<IAccessoriesService, AccessoriesService>();
-
-            #endregion
-
-            #region Refit
-
-            var environment = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT");
-            var isDevelopment = string.Equals(environment, "Development");
-
-            var timeoutPolicy = Policy.TimeoutAsync<HttpResponseMessage>(Api.ApiTimeOut);
-
-            services.AddRefitClient<IBlitzApi>()
-                    .AddPolicyHandler(timeoutPolicy)
-                    .ConfigureHttpClient(c =>
-                    {
-                        c.BaseAddress = new Uri(isDevelopment ? Api.LocalApiEndpoint : GlobalSetting.DefaultEndpoint);
-                    });
 
             #endregion
 
@@ -109,7 +96,6 @@ namespace App
             #endregion
 
             services.AddAutoMapper(typeof(Startup));
-            services.AddHttpClient(Api.ApiClientName);
         }
 
         #endregion

@@ -1,5 +1,4 @@
-﻿using System;
-using App.Providers.Navigation.Base;
+﻿using App.Providers.Navigation.Base;
 
 namespace App.Features.Menu.Pages
 {

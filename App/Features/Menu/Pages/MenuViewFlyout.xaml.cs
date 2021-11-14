@@ -5,7 +5,7 @@ using App.Features.About.Pages;
 using App.Features.Accessories.Pages.List;
 using App.Features.Home;
 using App.Features.SpareParts.Pages.List;
-using App.Features.User.Pages;
+using App.Features.User.Pages.Login;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
