@@ -1,32 +1,51 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage
+    x:Class="App.Features.User.Pages.Login.LoginView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="App.Features.User.Pages.Login.LoginView"
+    xmlns:resources="clr-namespace:App.Resx"
     xmlns:viewModelBase="clr-namespace:App;assembly=App"
+    Title="{x:Static resources:AppResources.Login}"
     viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    xmlns:controls="clr-namespace:App.Controls"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
     <ContentPage.Content>
-        <StackLayout Style="{StaticResource BaseStackStyle}">
-            <Grid RowDefinitions="Auto,Auto,Auto"
-                  Style="{StaticResource BaseGridStyle}"
-                  VerticalOptions="CenterAndExpand">
-                <Entry Placeholder="Email"
-                              Text="{Binding Email}"/>
-                <Entry Grid.Row="1" Grid.ColumnSpan="2"
-                              Placeholder="Password"
-                              Text="{Binding Password, Mode=TwoWay}"
-                              IsPassword="{Binding IsPassword}"/>
-                <ffimageloading:CachedImage Grid.Row="1" Grid.Column="1" Style="{StaticResource PasswordEyeStyle}"
-                                            Source="{Binding IsPassword,Converter={StaticResource PasswordEyeVisibilityConverter}}">
-                    <ffimageloading:CachedImage.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding EyeImageClickedCommand}"/>
-                    </ffimageloading:CachedImage.GestureRecognizers>
-                </ffimageloading:CachedImage>
-                <Button Grid.Row="2" Text="Login"
-                        Style="{StaticResource BaseButtonStyle}"
-                        Command="{Binding LoginCommand}"/>
-            </Grid>
-        </StackLayout>
+        <Grid ColumnDefinitions="*,Auto"
+                  RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                  Style="{StaticResource CenterGridStyle}">
+            <Label Grid.ColumnSpan="2" Text="{x:Static resources:AppResources.Login}"
+                       Style="{StaticResource SideHeaderLabelStyle}"/>
+            <Label Grid.Row="1" Grid.ColumnSpan="2"
+                       Text="{x:Static resources:AppResources.Message_Login}"
+                       Style="{StaticResource SideSubHeaderLabelStyle}"/>
+            <Label Grid.Row="2"
+                       Grid.ColumnSpan="2" Text="{x:Static resources:AppResources.Email}"
+                       Style="{StaticResource PlaceholderLabelStyle}"/>
+            <controls:ValidatorControl Grid.Row="3" Grid.ColumnSpan="2"
+                                       Keyboard="Email"
+                                       Text="{Binding Email.Value,Mode=TwoWay}"
+                                       ErrorText="{Binding Email.Errors,Converter={StaticResource EntryErrorConverter}}"/>
+            <Label Grid.Row="4"
+                       Grid.ColumnSpan="2" Text="{x:Static resources:AppResources.Password}"
+                       Style="{StaticResource PlaceholderLabelStyle}"/>
+            <controls:ValidatorControl Grid.Row="5" Grid.ColumnSpan="2"
+                                       Text="{Binding Password.Value,Mode=TwoWay}"
+                                       IsPassword="{Binding IsPassword}"
+                                       ErrorText="{Binding Password.Errors,Converter={StaticResource EntryErrorConverter}}"/>
+            <ffimageloading:CachedImage
+                        Grid.Row="5"
+                        Grid.Column="1"
+                        Source="{Binding IsPassword, Converter={StaticResource PasswordEyeVisibilityConverter}}"
+                        Style="{StaticResource PasswordEyeStyle}">
+                        <ffimageloading:CachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding EyeImageClickedCommand}" />
+                        </ffimageloading:CachedImage.GestureRecognizers>
+                    </ffimageloading:CachedImage>
+            <Button
+                    Grid.Row="6" Grid.ColumnSpan="2"
+                    Command="{Binding LoginCommand}"
+                    Style="{StaticResource BaseButtonStyle}"
+                    Text="{x:Static resources:AppResources.Login}" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

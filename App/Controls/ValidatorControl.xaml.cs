@@ -19,8 +19,7 @@ namespace App.Controls
                                                                                         returnType: typeof(string),
                                                                                         declaringType: typeof(ValidatorControl),
                                                                                         defaultValue: "",
-                                                                                        defaultBindingMode: BindingMode.TwoWay,
-                                                                                        propertyChanged: TextPropertyChanged);
+                                                                                        defaultBindingMode: BindingMode.TwoWay);
 
         public string Text
         {
@@ -28,82 +27,59 @@ namespace App.Controls
             set { SetValue(TextProperty, value); }
         }
 
-        private static void TextPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var control = (ValidatorControl)bindable;
-            control.entry.Text = newValue?.ToString();
-        }
-
         public static readonly BindableProperty ErrorTextProperty = BindableProperty.Create(propertyName: "ErrorText",
                                                                                         returnType: typeof(string),
                                                                                         declaringType: typeof(ValidatorControl),
                                                                                         defaultValue: "",
-                                                                                        defaultBindingMode: BindingMode.TwoWay,
-                                                                                        propertyChanged: ErrorTextPropertyChanged);
+                                                                                        defaultBindingMode: BindingMode.TwoWay);
         public string ErrorText
         {
             get { return (string)GetValue(ErrorTextProperty); }
             set { SetValue(ErrorTextProperty, value); }
         }
 
-        private static void ErrorTextPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var control = (ValidatorControl)bindable;
-            control.label.Text = newValue?.ToString();
-        }
-
         public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(propertyName: "Placeholder",
                                                                                         returnType: typeof(string),
                                                                                         declaringType: typeof(ValidatorControl),
                                                                                         defaultValue: "",
-                                                                                        defaultBindingMode: BindingMode.TwoWay,
-                                                                                        propertyChanged: PlaceholderPropertyChanged);
+                                                                                        defaultBindingMode: BindingMode.TwoWay);
         public string Placeholder
         {
             get { return (string)GetValue(PlaceholderProperty); }
             set { SetValue(PlaceholderProperty, value); }
         }
 
-        private static void PlaceholderPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var control = (ValidatorControl)bindable;
-            control.entry.Placeholder = newValue?.ToString();
-        }
-
         public static readonly BindableProperty IsPasswordProperty = BindableProperty.Create(propertyName: "IsPassword",
                                                                                         returnType: typeof(bool),
                                                                                         declaringType: typeof(ValidatorControl),
                                                                                         defaultValue: false,
-                                                                                        defaultBindingMode: BindingMode.TwoWay,
-                                                                                        propertyChanged: IsPasswordPropertyChanged);
+                                                                                        defaultBindingMode: BindingMode.TwoWay);
         public bool IsPassword
         {
             get { return (bool)GetValue(IsPasswordProperty); }
             set { SetValue(IsPasswordProperty, value); }
         }
 
-        private static void IsPasswordPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var control = (ValidatorControl)bindable;
-            control.entry.IsPassword = (bool)newValue;
-        }
-
         public static readonly BindableProperty MaxLengthProperty = BindableProperty.Create(propertyName: "MaxLength",
                                                                                         returnType: typeof(int),
                                                                                         declaringType: typeof(ValidatorControl),
                                                                                         defaultValue: 100,
-                                                                                        defaultBindingMode: BindingMode.TwoWay,
-                                                                                        propertyChanged: MaxLengthPropertyChanged);
+                                                                                        defaultBindingMode: BindingMode.TwoWay);
         public int MaxLength
         {
             get { return (int)GetValue(MaxLengthProperty); }
             set { SetValue(MaxLengthProperty, value); }
         }
 
-        private static void MaxLengthPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        public static readonly BindableProperty KeyboardProperty = BindableProperty.Create(propertyName: "Keyboard",
+                                                                                        returnType: typeof(Keyboard),
+                                                                                        declaringType: typeof(ValidatorControl),
+                                                                                        defaultValue: Keyboard.Default,
+                                                                                        defaultBindingMode: BindingMode.TwoWay);
+        public Keyboard Keyboard
         {
-            var control = (ValidatorControl)bindable;
-            control.entry.MaxLength = (int)newValue;
+            get { return (Keyboard)GetValue(KeyboardProperty); }
+            set { SetValue(KeyboardProperty, value); }
         }
 
         #endregion

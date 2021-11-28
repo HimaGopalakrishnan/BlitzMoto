@@ -1,8 +1,6 @@
 ﻿using System.Globalization;
 using System.Threading;
-using System.Threading.Tasks;
 using App.Constants;
-using App.Features.Home;
 using App.Features.Menu.Pages;
 using App.Providers.Navigation.Services;
 using App.Resx;
@@ -39,7 +37,6 @@ namespace App
             base.OnStart();
             await _navigationService.InitializeAsync();
             MainPage = new MenuView();
-            //await SetMainPage();
         }
 
         protected override void OnSleep()
@@ -61,11 +58,6 @@ namespace App
             AppResources.Culture = englishUSCulture;
             Thread.CurrentThread.CurrentCulture = englishUSCulture;
             Thread.CurrentThread.CurrentUICulture = englishUSCulture;
-        }
-
-        async Task SetMainPage()
-        {
-            await _navigationService.NavigateToAsync<HomeViewModel>();
         }
 
         #endregion

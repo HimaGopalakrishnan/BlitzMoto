@@ -50,6 +50,15 @@
         <Setter Property="WidthRequest" Value="30" />
     </Style>
 
+    <Style x:Key="BaseEntryStyle" TargetType="Entry">
+        <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource TransparentColor}" />
+        <Setter Property="FontSize" Value="{StaticResource RegularLabelSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource PrimaryFontRegular}" />
+        <Setter Property="HorizontalOptions" Value="Fill" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
     <Style TargetType="Entry">
         <Setter Property="FontSize" Value="{StaticResource MediumLabelSize}" />
         <Setter Property="FontFamily" Value="{StaticResource PrimaryFontRegular}" />
@@ -69,6 +78,48 @@
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="HorizontalTextAlignment" Value="Start" />
         <Setter Property="HorizontalOptions" Value="Start" />
+    </Style>
+
+    <Style
+        x:Key="HeaderLabelStyle"
+        BasedOn="{StaticResource BaseLabelStyle}"
+        TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource RedColor}" />
+        <Setter Property="FontSize" Value="{StaticResource LargeLabelSize}" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+    </Style>
+
+    <Style
+        x:Key="SideHeaderLabelStyle"
+        BasedOn="{StaticResource HeaderLabelStyle}"
+        TargetType="Label">
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+    </Style>
+
+    <Style
+        x:Key="BlackHeaderLabelStyle"
+        BasedOn="{StaticResource SideHeaderLabelStyle}"
+        TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+        <Setter Property="HorizontalOptions" Value="Fill" />
+    </Style>
+
+    <Style
+        x:Key="SubHeaderLabelStyle"
+        BasedOn="{StaticResource HeaderLabelStyle}"
+        TargetType="Label">
+        <Setter Property="FontSize" Value="{StaticResource SubHeaderLabelSize}" />
+        <Setter Property="TextColor" Value="{StaticResource GrayColor}" />
+    </Style>
+
+    <Style
+        x:Key="SideSubHeaderLabelStyle"
+        BasedOn="{StaticResource SubHeaderLabelStyle}"
+        TargetType="Label">
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
     </Style>
 
     <Style
@@ -223,6 +274,11 @@
         <Setter Property="BackgroundColor" Value="{StaticResource TransparentColor}" />
         <Setter Property="VerticalOptions" Value="FillAndExpand" />
         <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+    </Style>
+
+    <Style x:Key="CenterGridStyle" TargetType="Grid"
+           BasedOn="{StaticResource BaseGridStyle}">
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
     </Style>
 
     <Style x:Key="BaseStackStyle" TargetType="StackLayout">

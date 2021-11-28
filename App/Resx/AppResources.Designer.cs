@@ -95,6 +95,24 @@ namespace App.Resx {
             }
         }
         
+        public static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        public static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
         public static string Message_Login {
             get {
                 return ResourceManager.GetString("Message_Login", resourceCulture);

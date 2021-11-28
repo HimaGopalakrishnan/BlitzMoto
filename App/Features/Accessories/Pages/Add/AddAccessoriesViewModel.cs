@@ -8,6 +8,7 @@ using App.Providers.Navigation.Services;
 using App.Providers.Validation;
 using App.Providers.Validation.Rules;
 using App.Resx;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -102,7 +103,7 @@ namespace App.Features.Accessories.Pages.Add
             bool isValid = Validate();
             if (isValid)
             {
-                var accessory = new Accessory { Number = "1", Name = "Break", Quantity = 1, Price = 100 };
+                var accessory = new Accessory { Number = PartNumber.Value, Name = Accessory.Value, Quantity = Convert.ToInt32(Quantity.Value), Price = Convert.ToDouble(Price.Value) };
                 await _apiCallManager.ExecuteCall(() => _accessoriesService.AddAccessory(accessory),
                     async response =>
                     {
@@ -124,8 +125,7 @@ namespace App.Features.Accessories.Pages.Add
             _accessory.Validate();
             _quantity.Validate();
             _price.Validate();
-            //return _partNumber.IsValid && _accessory.IsValid && _quantity.IsValid && _price.IsValid;
-            return true;
+            return _partNumber.IsValid && _accessory.IsValid && _quantity.IsValid && _price.IsValid;
         }
 
         void AddValidations()

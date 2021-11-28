@@ -9,52 +9,59 @@
     x:Name="home"
     Title="Home">
     <ContentPage.Content>
-        <Grid RowDefinitions="*,*,*,*,*,*,Auto,2*"
+        <Grid RowDefinitions="*,*,*,*,*,*,*,Auto,2*"
               ColumnDefinitions="*,*"
               Style="{StaticResource BaseGridStyle}">
             <Frame Grid.ColumnSpan="2">
+                <Label Text="Updates" Style="{StaticResource HomeLabelStyle}"/>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigationCommand}"
+                                          CommandParameter="Updates"/>
+                </Frame.GestureRecognizers>
+            </Frame>
+            <Frame Grid.Row="1" Grid.ColumnSpan="2">
                 <Label Text="Accessories" Style="{StaticResource HomeLabelStyle}"/>
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding NavigationCommand}"
                                           CommandParameter="Accessories"/>
                 </Frame.GestureRecognizers>
             </Frame>
-            <Frame Grid.Row="1" Grid.ColumnSpan="2">
+            <Frame Grid.Row="2" Grid.ColumnSpan="2">
                 <Label Text="Riding Gears" Style="{StaticResource HomeLabelStyle}"/>
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding NavigationCommand}"
                                           CommandParameter="Gears"/>
                 </Frame.GestureRecognizers>
             </Frame>
-            <Frame Grid.Row="2" Grid.ColumnSpan="2">
+            <Frame Grid.Row="3" Grid.ColumnSpan="2">
                 <Label Text="Power Parts" Style="{StaticResource HomeLabelStyle}"/>
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding NavigationCommand}"
                                           CommandParameter="PowerParts"/>
                 </Frame.GestureRecognizers>
             </Frame>
-            <Frame Grid.Row="3" Grid.ColumnSpan="2">
+            <Frame Grid.Row="4" Grid.ColumnSpan="2">
                 <Label Text="Apparels" Style="{StaticResource HomeLabelStyle}"/>
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding NavigationCommand}"
                                           CommandParameter="Apparels"/>
                 </Frame.GestureRecognizers>
             </Frame>
-            <Frame Grid.Row="4" Grid.ColumnSpan="2">
+            <Frame Grid.Row="5" Grid.ColumnSpan="2">
                 <Label Text="Service Prebooking" Style="{StaticResource HomeLabelStyle}"/>
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding NavigationCommand}"
                                           CommandParameter="Service"/>
                 </Frame.GestureRecognizers>
             </Frame>
-            <Frame Grid.Row="5" Grid.ColumnSpan="2">
+            <Frame Grid.Row="6" Grid.ColumnSpan="2">
                 <Label Text="Spare Booking" Style="{StaticResource HomeLabelStyle}"/>
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding NavigationCommand}"
                                           CommandParameter="Spare"/>
                 </Frame.GestureRecognizers>
             </Frame>
-            <ffimageloading:CachedImage Grid.Row="6"
+            <ffimageloading:CachedImage Grid.Row="7"
                                         Source="whatsapp"
                                         Style="{StaticResource LogoStyle}">
                 <ffimageloading:CachedImage.GestureRecognizers>
@@ -62,7 +69,7 @@
                                           CommandParameter="Whatsapp"/>
                 </ffimageloading:CachedImage.GestureRecognizers>
             </ffimageloading:CachedImage>
-            <ffimageloading:CachedImage Grid.Row="6" Grid.Column="1"
+            <ffimageloading:CachedImage Grid.Row="7" Grid.Column="1"
                                         Source="instagram"
                                         Style="{StaticResource LogoStyle}">
                 <ffimageloading:CachedImage.GestureRecognizers>
@@ -70,20 +77,22 @@
                                           CommandParameter="Instagram"/>
                 </ffimageloading:CachedImage.GestureRecognizers>
             </ffimageloading:CachedImage>
-            <Grid Grid.Row="7" Grid.ColumnSpan="2"
-                  RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+            <Grid Grid.Row="8" Grid.ColumnSpan="2"
+                  RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
                   ColumnDefinitions="Auto,*,Auto"
                   RowSpacing="{StaticResource spacing_0}">
                 <ffimageloading:CachedImage Source="location" Style="{StaticResource IconStyle}"/>
                 <Label Grid.Column="1" Text="Blitz Moto, Valanchery" Style="{StaticResource ListLabelStyle}"/>
-                <Label Grid.Row="1" Grid.Column="1" Text="Opposite MES KVM College" Style="{StaticResource ListLabelStyle}"/>
-                <ffimageloading:CachedImage Grid.Row="2" Source="ic_instagram" Style="{StaticResource IconStyle}"
+                <Label Grid.Row="1" Grid.Column="1" Text="Opposite MES KVM College, Kottaram" Style="{StaticResource ListLabelStyle}"/>
+                <Label Grid.Row="2" Grid.Column="1" Text="Valanchery, Malappuram" Style="{StaticResource ListLabelStyle}"/>
+                <Label Grid.Row="3" Grid.Column="1" Text="Pin : 676552" Style="{StaticResource ListLabelStyle}"/>
+                <ffimageloading:CachedImage Grid.Row="4" Source="ic_instagram" Style="{StaticResource IconStyle}"
                                             HeightRequest="30" WidthRequest="30"/>
-                <Label Grid.Row="2" Grid.Column="1" Text="Teamblitzmoto" Style="{StaticResource ListLabelStyle}"/>
-                <ffimageloading:CachedImage Grid.Row="3" Source="phone" Style="{StaticResource IconStyle}"/>
-                <Label Grid.Row="3" Grid.Column="1" Text="+91 9747609665" Style="{StaticResource ListLabelStyle}"/>
-                <Label Grid.Row="4" Grid.Column="1" Text="+91 9526459779" Style="{StaticResource ListLabelStyle}"/>
-                <StackLayout Grid.Row="4" Grid.Column="2"
+                <Label Grid.Row="4" Grid.Column="1" Text="Teamblitzmoto" Style="{StaticResource ListLabelStyle}"/>
+                <ffimageloading:CachedImage Grid.Row="5" Source="phone" Style="{StaticResource IconStyle}"/>
+                <Label Grid.Row="5" Grid.Column="1" Text="+91 9747609665" Style="{StaticResource ListLabelStyle}"/>
+                <Label Grid.Row="6" Grid.Column="1" Text="+91 9526459779" Style="{StaticResource ListLabelStyle}"/>
+                <StackLayout Grid.Row="6" Grid.Column="2"
                              Orientation="Horizontal"
                              HorizontalOptions="End">
                     <!--<Frame Style="{StaticResource ImageBorderStyle}">

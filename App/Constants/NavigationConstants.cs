@@ -2,6 +2,7 @@
 {
     public class NavigationConstants
     {
+        public const string Updates = "Updates";
         public const string Accessories = "Accessories";
         public const string Gears = "Gears";
         public const string PowerParts = "PowerParts";

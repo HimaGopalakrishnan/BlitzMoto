@@ -10,11 +10,10 @@
               Style="{StaticResource MenuListStyle}"
               ItemsSource="{Binding MenuItems}">
       <ListView.Header>
-        <!--<Label Text="BLITZ" Style="{StaticResource LogoLabelStyle}"/>-->
-          <ffimageloading:CachedImage Source="app_icon"
-                                      HeightRequest="50"
-                                      HorizontalOptions="Fill"
-                                      Margin="0,20,0,0"/>
+        <ffimageloading:CachedImage Source="app_icon"
+                                    HeightRequest="50"
+                                    HorizontalOptions="Fill"
+                                    Margin="0,20,0,0"/>
       </ListView.Header>
       <ListView.ItemTemplate>
         <DataTemplate>

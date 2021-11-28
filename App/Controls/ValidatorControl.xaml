@@ -3,12 +3,17 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="App.Controls.ValidatorControl"
-    x:Name="view">
+    x:Name="this">
     <ContentView.Content>
         <StackLayout>
-            <Entry x:Name="entry"
-                   BindingContext="{x:Reference Name=view}"/>
-            <Label x:Name="label" Style="{StaticResource ValidationErrorLabelStyle}"/>
+            <Entry x:Name="entry" Style="{StaticResource BaseEntryStyle}"
+                   Text="{Binding Source={x:Reference this}, Path=Text}"
+                   Placeholder="{Binding Source={x:Reference this}, Path=Placeholder}"
+                   IsPassword="{Binding Source={x:Reference this}, Path=IsPassword}"
+                   MaxLength="{Binding Source={x:Reference this}, Path=MaxLength}"
+                   Keyboard="{Binding Source={x:Reference this}, Path=Keyboard}"/>
+            <Label x:Name="label" Style="{StaticResource ValidationErrorLabelStyle}"
+                   Text="{Binding Source={x:Reference this}, Path=ErrorText}"/>
         </StackLayout>
     </ContentView.Content>
 </ContentView>

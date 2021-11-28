@@ -1,4 +1,6 @@
 ﻿using App.Features.SpareParts.Models;
+using App.Features.SpareParts.Services;
+using App.Providers.Api.Services;
 using App.Providers.Database.Services;
 using App.Providers.Dialog.Services;
 using App.Providers.Navigation.Base;
@@ -17,6 +19,8 @@ namespace App.Features.SpareParts.Pages.Add
     {
         #region Services
 
+        readonly IApiCallManager _apiCallManager;
+        readonly ISpareService _spareService;
         readonly ISQLiteService _sqliteService;
         readonly INavigationService _navigationService;
         readonly IDialogService _dialogService;
@@ -63,9 +67,12 @@ namespace App.Features.SpareParts.Pages.Add
 
         #region Constructor
 
-        public AddSpareViewModel(ISQLiteService sqliteService, INavigationService navigationService,
+        public AddSpareViewModel(IApiCallManager apiCallManager,ISpareService spareService,
+                                 ISQLiteService sqliteService, INavigationService navigationService,
                                  IDialogService dialogService)
         {
+            _apiCallManager = apiCallManager;
+            _spareService = spareService;
             _sqliteService = sqliteService;
             _navigationService = navigationService;
             _dialogService = dialogService;
@@ -89,17 +96,19 @@ namespace App.Features.SpareParts.Pages.Add
             bool isValid = Validate();
             if (isValid)
             {
-                var accessory = new SparePart { Number = PartNumber.Value, Name = Spare.Value, Quantity = Convert.ToInt32(Quantity.Value), Price = Convert.ToDouble(Quantity.Value) };
-                var id = await _sqliteService.SaveItemAsync(accessory);
-                if (id > 0)
-                {
-                    _dialogService.Toast(AppResources.Data_Added);
-                    await _navigationService.RemoveLastPageAsync();
-                }
-                else
-                {
-                    _dialogService.Alert(AppResources.SomethingWronMessage);
-                }
+                var spare = new SparePart { Number = PartNumber.Value, Name = Spare.Value, Quantity = Convert.ToInt32(Quantity.Value), Price = Convert.ToDouble(Price.Value) };
+                await _apiCallManager.ExecuteCall(() => _spareService.AddSpare(spare),
+                    async response =>
+                    {
+                        var id = await _sqliteService.SaveItemAsync(spare);
+                        _dialogService.Toast(AppResources.Data_Added);
+                        await _navigationService.RemoveLastPageAsync();
+                    },
+                    error =>
+                    {
+                        _dialogService.HideLoading();
+
+                    }, true, AppResources.Loading);
             }
         }
 

@@ -4,7 +4,6 @@ using App.Features.Accessories.Services;
 using App.Features.Home;
 using App.Features.Menu.Pages;
 using App.Features.SpareParts.Services;
-using App.Features.User.Services;
 using App.Providers.Analytics.Services;
 using App.Providers.Api.Services;
 using App.Providers.Cache.Services;
@@ -17,6 +16,8 @@ using Microsoft.Extensions.Hosting;
 using Providers.Navigation.Services;
 using System;
 using Xamarin.Essentials;
+using App.Features.Vehicles.Services;
+using App.Features.User.Pages.Login;
 
 namespace App
 {
@@ -57,6 +58,7 @@ namespace App
 
             services.AddTransient<MenuViewModel>();
             services.AddTransient<HomeViewModel>();
+            services.AddTransient<LoginViewModel>();
             services.AddTransient<AccessoriesListViewModel>();
             services.AddTransient<AddAccessoriesViewModel>();
 
@@ -74,7 +76,7 @@ namespace App
 
             services.AddSingleton<IAccessoriesService, AccessoriesService>();
             services.AddSingleton<ISpareService, SpareService>();
-            services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<IVehicleService, VehicleService>();
 
             #endregion
 

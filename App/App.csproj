@@ -103,6 +103,11 @@
     <None Remove="Controls\" />
     <None Remove="Features\User\Pages\Login\" />
     <None Remove="Features\User\Pages\Register\" />
+    <None Remove="Features\Vehicles\" />
+    <None Remove="Features\Vehicles\Pages\" />
+    <None Remove="Features\Vehicles\Services\" />
+    <None Remove="Features\Vehicles\Pages\VehicleListView\" />
+    <None Remove="Features\Vehicles\Pages\Detail\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Constants\" />
@@ -146,6 +151,11 @@
     <Folder Include="Controls\" />
     <Folder Include="Features\User\Pages\Login\" />
     <Folder Include="Features\User\Pages\Register\" />
+    <Folder Include="Features\Vehicles\" />
+    <Folder Include="Features\Vehicles\Pages\" />
+    <Folder Include="Features\Vehicles\Services\" />
+    <Folder Include="Features\Vehicles\Pages\List\" />
+    <Folder Include="Features\Vehicles\Pages\Detail\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\Fonts\calligraphy.otf" />

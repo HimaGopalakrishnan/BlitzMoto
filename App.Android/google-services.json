@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "717310474757",
+    "firebase_url": "https://blitzmoto-aee0e-default-rtdb.firebaseio.com",
+    "project_id": "blitzmoto-aee0e",
+    "storage_bucket": "blitzmoto-aee0e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:717310474757:android:b942e48873963e6b41ba6c",
+        "android_client_info": {
+          "package_name": "com.blitzmoto.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "717310474757-ltn3aas3oj4q1lofegt9ugvje2g66r6q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaZVlGYsOIzDnAmA4KEl8XsUR8D2iGMgM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "717310474757-ltn3aas3oj4q1lofegt9ugvje2g66r6q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

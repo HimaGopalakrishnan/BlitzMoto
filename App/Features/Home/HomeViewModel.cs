@@ -5,6 +5,7 @@ using System.Windows.Input;
 using App.Constants;
 using App.Features.Accessories.Pages.List;
 using App.Features.SpareParts.Pages.List;
+using App.Features.User.Pages.Login;
 using App.Providers.Dialog.Services;
 using App.Providers.Navigation.Base;
 using App.Providers.Navigation.Services;
@@ -44,8 +45,16 @@ namespace App.Features.Home
 
         async Task NavigateToPage(string view)
         {
+            if (!Preferences.Get(PreferenceConstants.IsLoggedIn, false))
+            {
+                _dialogService.Alert("Please login to continue");
+                await _navigationService.NavigateToAsync<LoginViewModel>();
+                return;
+            }
             switch (view)
             {
+                case NavigationConstants.Updates:
+                    break;
                 case NavigationConstants.Accessories:
                     await _navigationService.NavigateToAsync<AccessoriesListViewModel>();
                     break;
@@ -116,6 +125,9 @@ namespace App.Features.Home
                     break;
                 case NavigationConstants.Mail:
                     await SendMail();
+                    break;
+                default:
+                    _dialogService.Toast("Feature under development");
                     break;
             }
         }

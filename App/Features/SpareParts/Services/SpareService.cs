@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace App.Features.SpareParts.Services
 {
-    public class SpareService: ISpareService
+    public class SpareService : ISpareService
     {
         #region Properties
 
@@ -39,11 +39,12 @@ namespace App.Features.SpareParts.Services
               }).ToList();
         }
 
-        public async Task AddSpare(SparePart spare)
+        public async Task<bool> AddSpare(SparePart spare)
         {
             await firebaseClient
               .Child("Spares")
               .PostAsync(spare);
+            return true;
         }
 
         public async Task<SparePart> GetSpare(int id)
