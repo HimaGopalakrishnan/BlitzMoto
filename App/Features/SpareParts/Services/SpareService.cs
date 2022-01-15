@@ -1,5 +1,5 @@
-﻿using App.Features.SpareParts.Models;
-using Firebase.Database;
+﻿using App.Features.Base.Services;
+using App.Features.SpareParts.Models;
 using Firebase.Database.Query;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +7,8 @@ using System.Threading.Tasks;
 
 namespace App.Features.SpareParts.Services
 {
-    public class SpareService : ISpareService
+    public class SpareService : BaseService, ISpareService
     {
-        #region Properties
-
-        FirebaseClient firebaseClient = new FirebaseClient("https://blitzmoto-aee0e-default-rtdb.firebaseio.com/");
-
-        #endregion
-
         #region Constructor
 
         public SpareService()
@@ -27,7 +21,7 @@ namespace App.Features.SpareParts.Services
 
         public async Task<List<SparePart>> GetAllSpares()
         {
-            return (await firebaseClient
+            return (await FirebaseClient
               .Child("Spares")
               .OnceAsync<SparePart>()).Select(item => new SparePart
               {
@@ -41,7 +35,7 @@ namespace App.Features.SpareParts.Services
 
         public async Task<bool> AddSpare(SparePart spare)
         {
-            await firebaseClient
+            await FirebaseClient
               .Child("Spares")
               .PostAsync(spare);
             return true;
@@ -50,30 +44,32 @@ namespace App.Features.SpareParts.Services
         public async Task<SparePart> GetSpare(int id)
         {
             var allSpares = await GetAllSpares();
-            await firebaseClient
+            await FirebaseClient
               .Child("Spares")
               .OnceAsync<SparePart>();
             return allSpares.Where(x => x.Id == id).FirstOrDefault();
         }
 
-        public async Task UpdateSpare(SparePart spare)
+        public async Task<bool> UpdateSpare(SparePart spare)
         {
-            var toUpdateSpare = (await firebaseClient
+            var toUpdateSpare = (await FirebaseClient
               .Child("Spares")
               .OnceAsync<SparePart>()).Where(x => x.Object.Id == spare.Id).FirstOrDefault();
 
-            await firebaseClient
+            await FirebaseClient
               .Child("Spares")
               .Child(toUpdateSpare.Key)
               .PutAsync(spare);
+            return true;
         }
 
-        public async Task DeleteSpare(int id)
+        public async Task<bool> DeleteSpare(int id)
         {
-            var toDeleteSpare = (await firebaseClient
+            var toDeleteSpare = (await FirebaseClient
               .Child("Spares")
               .OnceAsync<SparePart>()).Where(x => x.Object.Id == id).FirstOrDefault();
-            await firebaseClient.Child("Spares").Child(toDeleteSpare.Key).DeleteAsync();
+            await FirebaseClient.Child("Spares").Child(toDeleteSpare.Key).DeleteAsync();
+            return true;
         }
 
         #endregion

@@ -1,4 +1,5 @@
 ﻿using App.Features.Accessories.Models;
+using App.Features.Base.Services;
 using Firebase.Database;
 using Firebase.Database.Query;
 using System.Collections.Generic;
@@ -7,14 +8,8 @@ using System.Threading.Tasks;
 
 namespace App.Features.Accessories.Services
 {
-    public class AccessoriesService : IAccessoriesService
+    public class AccessoriesService : BaseService, IAccessoriesService
     {
-        #region Properties
-
-        FirebaseClient firebaseClient = new FirebaseClient("https://blitzmoto-aee0e-default-rtdb.firebaseio.com/");
-
-        #endregion
-
         #region Constructor
 
         public AccessoriesService()
@@ -27,7 +22,7 @@ namespace App.Features.Accessories.Services
 
         public async Task<List<Accessory>> GetAllAccessories()
         {
-            return (await firebaseClient
+            return (await FirebaseClient
               .Child("Accessories")
               .OnceAsync<Accessory>()).Select(item => new Accessory
               {
@@ -41,7 +36,7 @@ namespace App.Features.Accessories.Services
 
         public async Task<bool> AddAccessory(Accessory accessory)
         {
-            await firebaseClient
+            await FirebaseClient
                .Child("Accessories")
                .PostAsync(accessory);
             return true;
@@ -50,7 +45,7 @@ namespace App.Features.Accessories.Services
         public async Task<Accessory> GetAccessory(int id)
         {
             var allAccessories = await GetAllAccessories();
-            await firebaseClient
+            await FirebaseClient
               .Child("Accessories")
               .OnceAsync<Accessory>();
             return allAccessories.Where(x => x.Id == id).FirstOrDefault();
@@ -58,11 +53,11 @@ namespace App.Features.Accessories.Services
 
         public async Task<bool> UpdateAccessory(Accessory accessory)
         {
-            var toUpdateAccessory = (await firebaseClient
+            var toUpdateAccessory = (await FirebaseClient
               .Child("Accessories")
               .OnceAsync<Accessory>()).Where(x => x.Object.Id == accessory.Id).FirstOrDefault();
 
-            await firebaseClient
+            await FirebaseClient
               .Child("Accessories")
               .Child(toUpdateAccessory.Key)
               .PutAsync(accessory);
@@ -71,10 +66,10 @@ namespace App.Features.Accessories.Services
 
         public async Task<bool> DeleteAccessory(int id)
         {
-            var toDeleteAccessory = (await firebaseClient
+            var toDeleteAccessory = (await FirebaseClient
               .Child("Accessories")
               .OnceAsync<Accessory>()).Where(x => x.Object.Id == id).FirstOrDefault();
-            await firebaseClient.Child("Accessories").Child(toDeleteAccessory.Key).DeleteAsync();
+            await FirebaseClient.Child("Accessories").Child(toDeleteAccessory.Key).DeleteAsync();
             return true;
         }
 

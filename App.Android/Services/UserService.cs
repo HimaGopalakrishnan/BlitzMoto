@@ -45,6 +45,7 @@ namespace App.Droid.Services
         public LoginResponseModel Login(LoginRequestModel model)
         {
             var task = auth.SignInWithEmailAndPassword(model.Email, model.Password);
+
             if (task.IsSuccessful)
             {
                 return new LoginResponseModel();

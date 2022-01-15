@@ -1,12 +1,14 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using App.Constants;
+﻿using App.Constants;
 using App.Features.About.Pages;
 using App.Features.Accessories.Pages.List;
 using App.Features.Home;
 using App.Features.SpareParts.Pages.List;
 using App.Features.User.Pages.Login;
+using App.Features.User.Pages.Register;
+using App.Features.Vehicles.Pages.Detail;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -33,7 +35,7 @@ namespace App.Features.Menu.Pages
             public MenuViewFlyoutViewModel()
             {
                 bool isLoggedIn = Preferences.Get(PreferenceConstants.IsLoggedIn, false);
-                bool isOwner = Preferences.Get(PreferenceConstants.IsOwner, false);
+                bool isAdmin = Preferences.Get(PreferenceConstants.IsAdmin, false);
 
                 MenuItems = new ObservableCollection<MenuViewFlyoutMenuItem>(new[]
                 {
@@ -44,15 +46,15 @@ namespace App.Features.Menu.Pages
                 {
                     MenuItems.Add(new MenuViewFlyoutMenuItem { Id = 1, Title = "Spare Parts", TargetType = typeof(SpareListView) });
                     MenuItems.Add(new MenuViewFlyoutMenuItem { Id = 2, Title = "Accessories", TargetType = typeof(AccessoriesListView) });
-                    if (isOwner)
+                    if (isAdmin)
                     {
-                        MenuItems.Add(new MenuViewFlyoutMenuItem { Id = 3, Title = "Vehicle Details", TargetType = typeof(LoginView) });
-                        MenuItems.Add(new MenuViewFlyoutMenuItem { Id = 4, Title = "Billing", TargetType = typeof(LoginView) });
+                        MenuItems.Add(new MenuViewFlyoutMenuItem { Id = 3, Title = "Vehicle Details", TargetType = typeof(VehicleDetailsView) });
+                        MenuItems.Add(new MenuViewFlyoutMenuItem { Id = 4, Title = "Billing", TargetType = typeof(RegisterView) });
                     }
                 }
                 else
                 {
-                    MenuItems.Add(new MenuViewFlyoutMenuItem { Id = 1, Title = "Login", TargetType = typeof(LoginView) });
+                    MenuItems.Add(new MenuViewFlyoutMenuItem { Id = MenuItems.Count, Title = "Login", TargetType = typeof(LoginView) });
 
                 }
                 MenuItems.Add(new MenuViewFlyoutMenuItem { Id = MenuItems.Count, Title = "About us", TargetType = typeof(AboutUsView) });

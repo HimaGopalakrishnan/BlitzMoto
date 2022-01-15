@@ -17,6 +17,17 @@ namespace App.Features.Home
 {
     public class HomeViewModel : ViewModelBase
     {
+        #region Properties
+
+        bool _isAdmin;
+        public bool IsAdmin
+        {
+            get => _isAdmin;
+            set => SetProperty(ref _isAdmin, value);
+        }
+
+        #endregion
+
         #region Services
 
         readonly INavigationService _navigationService;
@@ -36,6 +47,9 @@ namespace App.Features.Home
         {
             _navigationService = ViewModelLocator.Resolve<INavigationService>();
             _dialogService = ViewModelLocator.Resolve<IDialogService>();
+
+            IsAdmin = Preferences.Get(PreferenceConstants.IsAdmin, false);
+
             NavigationCommand = new Command<string>(async (view) => await NavigateToPage(view));
         }
 
@@ -48,7 +62,7 @@ namespace App.Features.Home
             if (!Preferences.Get(PreferenceConstants.IsLoggedIn, false))
             {
                 _dialogService.Alert("Please login to continue");
-                await _navigationService.NavigateToAsync<LoginViewModel>();
+                //await _navigationService.NavigateToAsync<LoginViewModel>();
                 return;
             }
             switch (view)

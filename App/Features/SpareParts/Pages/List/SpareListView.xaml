@@ -7,20 +7,23 @@
     x:Class="App.Features.SpareParts.Pages.List.SpareListView"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
     <ContentPage.Content>
-        <Grid RowDefinitions="*,*"
+        <Grid RowDefinitions="*,Auto"
               Style="{StaticResource BaseGridStyle}">
             <CollectionView x:Name="list" Grid.RowSpan="2" ItemsSource="{Binding Spares}">
                 <CollectionView.HeaderTemplate>
                     <DataTemplate>
-                        <Grid RowDefinitions="*,Auto" ColumnDefinitions="50,*,Auto,Auto"
-                              Padding="{StaticResource padding_10}">
-                            <Label Grid.Column="1" Text="Name"
+                        <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="50,*,Auto,Auto"
+                              Padding="0">
+                            <SearchBar x:Name="searchBar" Grid.Column="3"
+                                       SearchCommand="{Binding BindingContext.SearchCommand,Source={x:Reference list}}"
+                                       SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
+                            <Label Grid.Row="1" Grid.Column="1" Text="Name"
                                    Style="{StaticResource ListLabelStyle}"/>
-                            <Label Grid.Column="2" Text="Quantity"
+                            <Label Grid.Row="1" Grid.Column="2" Text="Quantity"
                                    Style="{StaticResource ListLabelStyle}"/>
-                            <Label Grid.Column="3" Text="Price"
+                            <Label Grid.Row="1" Grid.Column="3" Text="Price"
                                    Style="{StaticResource ListLabelStyle}"/>
-                            <BoxView Grid.Row="1" Grid.ColumnSpan="4"
+                            <BoxView Grid.Row="2" Grid.ColumnSpan="4"
                                      Style="{StaticResource HorizontalSeparatorStyle}"/>
                         </Grid>
                     </DataTemplate>

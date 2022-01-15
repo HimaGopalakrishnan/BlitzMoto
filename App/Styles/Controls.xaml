@@ -4,6 +4,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
 
+    <Style TargetType="NavigationPage">
+        <Setter Property="BarBackgroundColor" Value="{StaticResource RedColor}"/>
+        <Setter Property="BarTextColor" Value="White"/>
+      </Style>
     <Style TargetType="ListView">
         <Setter Property="SeparatorVisibility" Value="None" />
         <Setter Property="IsPullToRefreshEnabled" Value="True" />
@@ -287,4 +291,10 @@
         <Setter Property="VerticalOptions" Value="FillAndExpand" />
         <Setter Property="HorizontalOptions" Value="FillAndExpand" />
     </Style>
+
+    <Style x:Key="CenterStackStyle" TargetType="StackLayout"
+           BasedOn="{StaticResource BaseStackStyle}">
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+    </Style>
+
 </ResourceDictionary>

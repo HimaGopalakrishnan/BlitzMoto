@@ -18,6 +18,10 @@ using System;
 using Xamarin.Essentials;
 using App.Features.Vehicles.Services;
 using App.Features.User.Pages.Login;
+using App.Features.SpareParts.Pages.Add;
+using App.Features.SpareParts.Pages.List;
+using App.Features.Vehicles.Pages.Detail;
+using App.Features.User.Pages.Register;
 
 namespace App
 {
@@ -59,8 +63,12 @@ namespace App
             services.AddTransient<MenuViewModel>();
             services.AddTransient<HomeViewModel>();
             services.AddTransient<LoginViewModel>();
+            services.AddTransient<RegisterViewModel>();
             services.AddTransient<AccessoriesListViewModel>();
             services.AddTransient<AddAccessoriesViewModel>();
+            services.AddTransient<SpareListViewModel>();
+            services.AddTransient<AddSpareViewModel>();
+            services.AddTransient<VehicleDetailsViewModel>();
 
             #endregion
 

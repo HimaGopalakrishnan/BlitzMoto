@@ -9,7 +9,7 @@ namespace App.Features.SpareParts.Services
         Task<List<SparePart>> GetAllSpares();
         Task<bool> AddSpare(SparePart spare);
         Task<SparePart> GetSpare(int id);
-        Task UpdateSpare(SparePart spare);
-        Task DeleteSpare(int id);
+        Task<bool> UpdateSpare(SparePart spare);
+        Task<bool> DeleteSpare(int id);
     }
 }

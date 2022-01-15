@@ -8,11 +8,11 @@ namespace App.Features.Menu.Pages
     {
         #region Properties
 
-        bool _isOwner;
-        public bool IsOwner
+        bool _isAdmin;
+        public bool IsAdmin
         {
-            get => _isOwner;
-            set => SetProperty(ref _isOwner, value);
+            get => _isAdmin;
+            set => SetProperty(ref _isAdmin, value);
         }
 
         #endregion
@@ -21,7 +21,7 @@ namespace App.Features.Menu.Pages
 
         public MenuViewModel()
         {
-            IsOwner = Preferences.Get(PreferenceConstants.IsOwner, false);
+            IsAdmin = Preferences.Get(PreferenceConstants.IsAdmin, false);
         }
 
         #endregion

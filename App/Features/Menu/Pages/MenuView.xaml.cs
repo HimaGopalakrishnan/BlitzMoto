@@ -18,11 +18,17 @@ namespace App.Features.Menu.Pages
             var item = e.SelectedItem as MenuViewFlyoutMenuItem;
             if (item == null)
                 return;
+            try
+            {
+                var page = (Page)Activator.CreateInstance(item.TargetType);
+                page.Title = item.Title;
 
-            var page = (Page)Activator.CreateInstance(item.TargetType);
-            page.Title = item.Title;
+                Detail = new NavigationPage(page);
+            }
+            catch (Exception ex)
+            {
 
-            Detail = new NavigationPage(page);
+            }
             IsPresented = false;
 
             FlyoutPage.ListView.SelectedItem = null;

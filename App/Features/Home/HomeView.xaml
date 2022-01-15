@@ -9,7 +9,7 @@
     x:Name="home"
     Title="Home">
     <ContentPage.Content>
-        <Grid RowDefinitions="*,*,*,*,*,*,*,Auto,2*"
+        <Grid RowDefinitions="*,*,*,*,*,*,*,Auto,3*"
               ColumnDefinitions="*,*"
               Style="{StaticResource BaseGridStyle}">
             <Frame Grid.ColumnSpan="2">

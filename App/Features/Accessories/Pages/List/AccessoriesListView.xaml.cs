@@ -8,11 +8,5 @@ namespace App.Features.Accessories.Pages.List
         {
             InitializeComponent();
         }
-
-        protected async override void OnAppearing()
-        {
-            var vm = BindingContext as AccessoriesListViewModel; 
-            await vm.GetItems();
-        }
     }
 }

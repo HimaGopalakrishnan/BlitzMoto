@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="App.Features.Vehicles.Pages.Detail.VehicleDetailsView"
+    xmlns:viewModelBase="clr-namespace:App;assembly=App"
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    xmlns:controls="clr-namespace:App.Controls">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid Style="{StaticResource CenterGridStyle}" IsVisible="{Binding IsDataFetched, Converter={StaticResource InvertedBoolConverter}}">
+                <Label Text="Enter Vehicle number" Style="{StaticResource PlaceholderLabelStyle}"/>
+                <controls:ValidatorControl Keyboard="Chat"
+                                           Text="{Binding VehicleNumber.Value,Mode=TwoWay}"
+                                           ErrorText="{Binding VehicleNumber.Errors,Converter={StaticResource EntryErrorConverter}}"/>
+                <Button Text="Fetch" Style="{StaticResource BaseButtonStyle}"
+                        Command="{Binding FetchDataCommand}"
+                        IsVisible="{Binding IsAdmin}"/>
+            </Grid>
+            <Grid IsVisible="{Binding IsDataFetched}">
+                <StackLayout IsVisible="{Binding IsVisible, Converter={StaticResource InvertedBoolConverter}}"
+                             Style="{StaticResource CenterStackStyle}">
+                    <Label Style="{StaticResource ListLabelStyle}"
+                           HorizontalOptions="Center"
+                           Text="No vehicle found"/>
+                    <Button Text="Add Vehicle" Style="{StaticResource BaseButtonStyle}"
+                            Command="{Binding AddVehicleCommand}"
+                            IsVisible="{Binding IsAdmin}"/>
+                </StackLayout>
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                      ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                      IsVisible="{Binding IsVisible}"
+                      Style="{StaticResource BaseGridStyle}">
+                    <Label Text="Model" Style="{StaticResource PlaceholderLabelStyle}"/>
+                    <Label Text="{Binding Model}" Style="{StaticResource ListLabelStyle}"/>
+                </Grid>
+        </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

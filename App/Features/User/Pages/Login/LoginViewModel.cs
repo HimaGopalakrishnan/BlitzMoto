@@ -1,17 +1,16 @@
-﻿using App.Features.User.Services;
-using App.Providers.Navigation.Services;
+﻿using App.Constants;
+using App.Features.Menu.Pages;
+using App.Features.User.Models;
+using App.Features.User.Services;
 using App.Providers.Dialog.Services;
 using App.Providers.Navigation.Base;
+using App.Providers.Navigation.Services;
 using App.Providers.Validation;
 using App.Providers.Validation.Rules;
 using App.Resx;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using App.Features.User.Models;
 using Xamarin.Essentials;
-using App.Features.Menu.Pages;
-using App.Constants;
 
 namespace App.Features.User.Pages.Login
 {
@@ -19,7 +18,7 @@ namespace App.Features.User.Pages.Login
     {
         #region Services
 
-        readonly IUserService _userService;
+        IUserService _userService;
         readonly INavigationService _navigationService;
         readonly IDialogService _dialogService;
 
@@ -59,13 +58,12 @@ namespace App.Features.User.Pages.Login
 
         #region Constructor
 
-        public LoginViewModel(INavigationService navigationService, IDialogService dialogService)
+        public LoginViewModel()
         {
-            _userService = DependencyService.Get<IUserService>();
-            _navigationService = navigationService;
-            _dialogService = dialogService;
+            _navigationService = ViewModelLocator.Resolve<INavigationService>();
+            _dialogService = ViewModelLocator.Resolve<IDialogService>();
 
-            LoginCommand = new Command(async () => await Login());
+            LoginCommand = new Command(Login);
             EyeImageClickedCommand = new Command(EyeImageClicked);
 
             Email = new ValidatableObject<string>();
@@ -82,11 +80,13 @@ namespace App.Features.User.Pages.Login
             IsPassword = !IsPassword;
         }
 
-        async Task Login()
+        void Login()
         {
             bool isValid = Validate();
             if (isValid)
             {
+                _userService = DependencyService.Get<IUserService>();
+
                 var model = new LoginRequestModel
                 {
                     Email = Email.Value,
@@ -96,11 +96,11 @@ namespace App.Features.User.Pages.Login
                 var loginResult = _userService.Login(model);
                 if (loginResult != null)
                 {
-                    Preferences.Set(PreferenceConstants.IsOwner, Email.Value.Trim().Equals(UserDetails.AdminEmail));
+                    Preferences.Set(PreferenceConstants.IsAdmin, Email.Value.Trim().Equals(UserDetails.AdminEmail));
                     Preferences.Set(PreferenceConstants.IsLoggedIn, true);
                     Preferences.Set(PreferenceConstants.Username, Email.Value.Trim());
                     Preferences.Set(PreferenceConstants.Password, Password.Value.Trim());
-                    await _navigationService.NavigateToAsync<MenuViewModel>();
+                    Application.Current.MainPage = new MenuView();
                 }
                 else
                 {
@@ -131,23 +131,23 @@ namespace App.Features.User.Pages.Login
         {
             _email.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = AppResources.Message_Enter_Email });
             _email.Validations.Add(new IsValidEmailRule<string> { ValidationMessage = AppResources.Message_Enter_Valid_Email });
-            _password.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = AppResources.Message_Enter_Password });
-            _password.Validations.Add(new IsValidPasswordRule<string> { ValidationMessage = AppResources.Message_Enter_Password_With_Eight_Characters });
+            //_password.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = AppResources.Message_Enter_Password });
+            //_password.Validations.Add(new IsValidPasswordRule<string> { ValidationMessage = AppResources.Message_Enter_Password_With_Eight_Characters });
         }
 
         #endregion
 
-        #region Override Methods
+        //#region Override Methods
 
-        public override Task InitializeAsync(object navigationData)
-        {
-            if (navigationData != null)
-            {
-                Email = new ValidatableObject<string> { Value = navigationData as string };
-            }
-            return base.InitializeAsync(navigationData);
-        }
+        //public override Task InitializeAsync(object navigationData)
+        //{
+        //    if (navigationData != null)
+        //    {
+        //        Email = new ValidatableObject<string> { Value = navigationData as string };
+        //    }
+        //    return base.InitializeAsync(navigationData);
+        //}
 
-        #endregion
+        //#endregion
     }
 }
