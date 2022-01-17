@@ -1,11 +1,6 @@
 ﻿using App.Features.Accessories.Models;
 using App.Features.Accessories.Pages.Add;
-using App.Features.Accessories.Services;
-using App.Providers.Api.Services;
-using App.Providers.Database.Services;
-using App.Providers.Dialog.Services;
 using App.Providers.Navigation.Base;
-using App.Providers.Navigation.Services;
 using App.Resx;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -35,16 +30,6 @@ namespace App.Features.Accessories.Pages.List
 
         #endregion
 
-        #region Services
-
-        readonly IApiCallManager _apiCallManager;
-        readonly ISQLiteService _sqliteService;
-        readonly INavigationService _navigationService;
-        readonly IAccessoriesService _accessoriesService;
-        readonly IDialogService _dialogService;
-
-        #endregion
-
         #region Command
 
         public ICommand SearchCommand { get; set; }
@@ -54,16 +39,8 @@ namespace App.Features.Accessories.Pages.List
 
         #region Constructor
 
-        public AccessoriesListViewModel(IApiCallManager apiCallManager, ISQLiteService sqliteService,
-                                        INavigationService navigationService, IAccessoriesService accessoriesService,
-                                        IDialogService dialogService)
+        public AccessoriesListViewModel()
         {
-            _apiCallManager = apiCallManager;
-            _sqliteService = sqliteService;
-            _navigationService = navigationService;
-            _accessoriesService = accessoriesService;
-            _dialogService = dialogService;
-
             SearchCommand = new Command<string>(Search);
             AddIconTappedCommand = new Command(async () => await AddIconTapped());
         }
@@ -76,7 +53,7 @@ namespace App.Features.Accessories.Pages.List
         {
             if (!string.IsNullOrEmpty(searchText))
             {
-                var searchResult = allAccessories.Where(x => x.Name.Equals(searchText)).ToList();
+                var searchResult = allAccessories.Where(x => x.Name.ToLower().Contains(searchText.ToLower())).ToList();
                 Accessories = new ObservableCollection<Accessory>(searchResult);
             }
             else
@@ -87,12 +64,12 @@ namespace App.Features.Accessories.Pages.List
 
         async Task AddIconTapped()
         {
-            await _navigationService.NavigateToAsync<AddAccessoriesViewModel>();
+            await Application.Current.MainPage.Navigation.PushAsync(new AddAccessoriesView());
         }
 
         public async Task GetItems()
         {
-            await _apiCallManager.ExecuteCall(() => _accessoriesService.GetAllAccessories(),
+            await ApiCallManager.ExecuteCall(() => AccessoriesService.GetAllAccessories(),
                     accessories =>
                     {
                         allAccessories = accessories;
@@ -100,20 +77,11 @@ namespace App.Features.Accessories.Pages.List
                     },
                     async error =>
                     {
-                        var accessories = await _sqliteService.GetAllItemsAsync<Accessory>();
+                        var accessories = await SqliteService.GetAllItemsAsync<Accessory>();
                         Accessories = new ObservableCollection<Accessory>(accessories);
-                        _dialogService.HideLoading();
+                        DialogService.HideLoading();
 
-                    }, true, AppResources.Loading);
-        }
-
-        #endregion
-
-        #region Override Methods
-
-        public override async Task InitializeAsync(object navigationData)
-        {
-            await GetItems();
+                    }, showBusy: true, busyMessage: AppResources.Loading, ignoreCache: true);
         }
 
         #endregion

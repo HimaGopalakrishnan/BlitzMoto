@@ -1,5 +1,6 @@
 ﻿using App.Features.Accessories.Models;
 using App.Features.SpareParts.Models;
+using App.Features.Vehicles.Models;
 using App.Providers.Database.Constants;
 using App.Providers.Database.Models;
 using SQLite;

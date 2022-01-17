@@ -1,4 +1,5 @@
 ﻿using System;
+using App.Features.User.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,9 +18,15 @@ namespace App.Features.Menu.Pages
         {
             var item = e.SelectedItem as MenuViewFlyoutMenuItem;
             if (item == null)
+            {
                 return;
+            }
             try
             {
+                if (item.Title == "Logout")
+                {
+                    DependencyService.Get<IUserService>().SignOut();
+                }
                 var page = (Page)Activator.CreateInstance(item.TargetType);
                 page.Title = item.Title;
 

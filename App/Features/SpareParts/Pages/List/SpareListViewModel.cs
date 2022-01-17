@@ -1,11 +1,6 @@
-﻿using App.Features.Accessories.Pages.Add;
-using App.Features.SpareParts.Models;
-using App.Features.SpareParts.Services;
-using App.Providers.Api.Services;
-using App.Providers.Database.Services;
-using App.Providers.Dialog.Services;
+﻿using App.Features.SpareParts.Models;
+using App.Features.SpareParts.Pages.Add;
 using App.Providers.Navigation.Base;
-using App.Providers.Navigation.Services;
 using App.Resx;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -35,16 +30,6 @@ namespace App.Features.SpareParts.Pages.List
 
         #endregion
 
-        #region Services
-
-        readonly IApiCallManager _apiCallManager;
-        readonly ISQLiteService _sqliteService;
-        readonly ISpareService _spareService;
-        readonly INavigationService _navigationService;
-        readonly IDialogService _dialogService;
-
-        #endregion
-
         #region Command
 
         public ICommand SearchCommand { get; set; }
@@ -54,16 +39,8 @@ namespace App.Features.SpareParts.Pages.List
 
         #region Constructor
 
-        public SpareListViewModel(IApiCallManager apiCallManager, ISQLiteService sqliteService,
-                                  ISpareService spareService, INavigationService navigationService,
-                                  IDialogService dialogService)
+        public SpareListViewModel()
         {
-            _apiCallManager = apiCallManager;
-            _sqliteService = sqliteService;
-            _spareService = spareService;
-            _navigationService = navigationService;
-            _dialogService = dialogService;
-
             SearchCommand = new Command<string>(Search);
             AddIconTappedCommand = new Command(async () => await AddIconTapped());
         }
@@ -76,7 +53,7 @@ namespace App.Features.SpareParts.Pages.List
         {
             if (!string.IsNullOrEmpty(searchText))
             {
-                var searchResult = allSpares.Where(x => x.Name.Equals(searchText)).ToList();
+                var searchResult = allSpares.Where(x => x.Name.ToLower().Contains(searchText.ToLower())).ToList();
                 Spares = new ObservableCollection<SparePart>(searchResult);
             }
             else
@@ -87,14 +64,12 @@ namespace App.Features.SpareParts.Pages.List
 
         async Task AddIconTapped()
         {
-            await _navigationService.NavigateToAsync<AddAccessoriesViewModel>();
+            await Application.Current.MainPage.Navigation.PushAsync(new AddSpareView());
         }
 
         public async Task GetItems()
         {
-            var spares = await _sqliteService.GetAllItemsAsync<SparePart>();
-            Spares = new ObservableCollection<SparePart>(spares);
-            await _apiCallManager.ExecuteCall(() => _spareService.GetAllSpares(),
+            await ApiCallManager.ExecuteCall(() => SpareService.GetAllSpares(),
                     spares =>
                     {
                         allSpares = spares;
@@ -102,20 +77,11 @@ namespace App.Features.SpareParts.Pages.List
                     },
                     async error =>
                     {
-                        var _spares = await _sqliteService.GetAllItemsAsync<SparePart>();
+                        var _spares = await SqliteService.GetAllItemsAsync<SparePart>();
                         Spares = new ObservableCollection<SparePart>(_spares);
-                        _dialogService.HideLoading();
+                        DialogService.HideLoading();
 
-                    }, true, AppResources.Loading);
-        }
-
-        #endregion
-
-        #region Override Methods
-
-        public override async Task InitializeAsync(object navigationData)
-        {
-            await GetItems();
+                    }, showBusy: true, busyMessage: AppResources.Loading, ignoreCache: true);
         }
 
         #endregion

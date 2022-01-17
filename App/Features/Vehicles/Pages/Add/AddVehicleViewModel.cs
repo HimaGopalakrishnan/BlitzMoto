@@ -1,16 +1,11 @@
 ﻿using App.Features.SpareParts.Models;
-using App.Features.SpareParts.Services;
 using App.Features.Vehicles.Models;
-using App.Features.Vehicles.Services;
-using App.Providers.Api.Services;
-using App.Providers.Database.Services;
-using App.Providers.Dialog.Services;
 using App.Providers.Navigation.Base;
-using App.Providers.Navigation.Services;
 using App.Providers.Validation;
 using App.Providers.Validation.Rules;
 using App.Resx;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -21,11 +16,31 @@ namespace App.Features.Vehicles.Pages.Add
     {
         #region Properties
 
-        ValidatableObject<string> _name;
-        public ValidatableObject<string> Name
+        List<string> _models;
+        public List<string> Models
         {
-            get => _name;
-            set => SetProperty(ref _name, value);
+            get => _models;
+            set => SetProperty(ref _models, value);
+        }
+
+        ValidatableObject<string> _ownerName;
+        public ValidatableObject<string> OwnerName
+        {
+            get => _ownerName;
+            set => SetProperty(ref _ownerName, value);
+        }
+        ValidatableObject<string> _phone;
+        public ValidatableObject<string> Phone
+        {
+            get => _phone;
+            set => SetProperty(ref _phone, value);
+        }
+
+        ValidatableObject<string> _vehicleName;
+        public ValidatableObject<string> VehicleName
+        {
+            get => _vehicleName;
+            set => SetProperty(ref _vehicleName, value);
         }
         ValidatableObject<string> _model;
         public ValidatableObject<string> Model
@@ -84,59 +99,44 @@ namespace App.Features.Vehicles.Pages.Add
 
         #endregion
 
-        #region Services
+        #region Commands
 
-        readonly IApiCallManager _apiCallManager;
-        readonly ISQLiteService _sqliteService;
-        readonly INavigationService _navigationService;
-        readonly IVehicleService _vehicleService;
-        readonly ISpareService _spareService;
-        readonly IDialogService _dialogService;
-
-        #endregion
-
-        #region Command
-
-        public ICommand SaveButtonTapped { get; set; }
+        public ICommand AddVehicleCommand { get; set; }
 
         #endregion
 
         #region Constructor
 
-        public AddVehicleViewModel(IApiCallManager apiCallManager, ISQLiteService sqliteService,
-                                   INavigationService navigationService, IVehicleService vehicleService,
-                                   ISpareService spareService, IDialogService dialogService)
+        public AddVehicleViewModel()
         {
-            _apiCallManager = apiCallManager;
-            _sqliteService = sqliteService;
-            _navigationService = navigationService;
-            _vehicleService = vehicleService;
-            _spareService = spareService;
-            _dialogService = dialogService;
-
-            Name = new ValidatableObject<string>();
+            Models = new List<string> { "Royal Enfield", "KTM", "Yamaha", "Bajaj", "Kawasaki", "BMW", "Benelli", "Harley Davids", "Honda", "Triumph", "Ducati", "Susuki" };
+            OwnerName = new ValidatableObject<string>();
+            Phone = new ValidatableObject<string>();
+            VehicleName = new ValidatableObject<string>();
             Model = new ValidatableObject<string>();
             CaseNumber = new ValidatableObject<string>();
             EngineNumber = new ValidatableObject<string>();
-            ServiceDate = new ValidatableObject<DateTime>();
-            NextServiceDate = new ValidatableObject<DateTime>();
+            ServiceDate = new ValidatableObject<DateTime>(DateTime.Today);
+            NextServiceDate = new ValidatableObject<DateTime>(DateTime.Today);
             Kilometer = new ValidatableObject<double>();
             AddValidations();
 
-            SaveButtonTapped = new Command(async () => await SaveVehicleDetails());
+            AddVehicleCommand = new Command(async () => await AddVehicle());
         }
 
         #endregion
 
         #region Methods
 
-        async Task SaveVehicleDetails()
+        async Task AddVehicle()
         {
             if (Validate())
             {
                 var vehicle = new Vehicle
                 {
-                    Name = Name.Value,
+                    OwnerName = OwnerName.Value,
+                    ContactNumber=Phone.Value,
+                    VehicleName=VehicleName.Value,
                     Model = Model.Value,
                     CaseNumber = CaseNumber.Value,
                     EngineNumber = EngineNumber.Value,
@@ -145,22 +145,23 @@ namespace App.Features.Vehicles.Pages.Add
                     Kilometer = Kilometer.Value,
                     Note = Note,
                 };
-                await _apiCallManager.ExecuteCall(() => _vehicleService.SaveVehicleDetails(vehicle),
+                await ApiCallManager.ExecuteCall(() => VehicleService.SaveVehicleDetails(vehicle),
                         async response =>
                         {
-                            var id = await _sqliteService.SaveItemAsync(vehicle);
-                            _dialogService.Toast(AppResources.Data_Added);
+                            //var id = await SqliteService.SaveItemAsync(vehicle);
+                            DialogService.Toast(AppResources.Data_Added);
+                            await UserService.CreateUser(OwnerName.Value, Phone.Value, EngineNumber.Value);
                             if (vehicle.SpareUsed != null && vehicle.SpareCount > 0)
                             {
                                 await UpdateSpareDetails(vehicle);
                             }
-                            await _navigationService.RemoveLastPageAsync();
+                            await NavigationService.RemoveLastPageAsync();
                         },
                         error =>
                         {
-                            _dialogService.HideLoading();
+                            DialogService.HideLoading();
 
-                        }, true, AppResources.Loading);
+                        }, showBusy: true, busyMessage: AppResources.Loading, ignoreCache: true);
             }
         }
 
@@ -168,52 +169,41 @@ namespace App.Features.Vehicles.Pages.Add
         {
             var spare = vehicle.SpareUsed;
             spare.Quantity--;
-            await _apiCallManager.ExecuteCall(() => _spareService.UpdateSpare(spare),
+            await ApiCallManager.ExecuteCall(() => SpareService.UpdateSpare(spare),
                     async response =>
                     {
-                        await _sqliteService.SaveItemAsync(spare);
+                        await SqliteService.SaveItemAsync(spare);
                     },
                     error =>
                     {
-                        _dialogService.HideLoading();
+                        DialogService.HideLoading();
 
                     }, true, AppResources.Loading);
         }
 
         bool Validate()
         {
-            _name.Validate();
+            _ownerName.Validate();
             _model.Validate();
             _caseNumber.Validate();
             _engineNumber.Validate();
             _serviceDate.Validate();
             _nextServiceDate.Validate();
             _kilometer.Validate();
-            return _name.IsValid && _model.IsValid && _caseNumber.IsValid && _engineNumber.IsValid && _serviceDate.IsValid && _nextServiceDate.IsValid && _kilometer.IsValid;
+            return _ownerName.IsValid && _model.IsValid && _caseNumber.IsValid && _engineNumber.IsValid && _serviceDate.IsValid && _nextServiceDate.IsValid && _kilometer.IsValid;
         }
 
         void AddValidations()
         {
-            _name.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Enter valid name" });
+            _ownerName.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Enter valid name" });
+            _phone.Validations.Add(new IsValidContactNumberRule<string> { ValidationMessage = "Enter valid contact number" });
+            _vehicleName.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Enter valid vehicle name" });
             _model.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Enter valid model" });
             _caseNumber.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = AppResources.Enter_Valid_Data });
             _engineNumber.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = AppResources.Enter_Valid_Data });
             _serviceDate.Validations.Add(new IsValidDateRule<DateTime> { ValidationMessage = "Enter date" });
             _nextServiceDate.Validations.Add(new IsValidDateRule<DateTime> { ValidationMessage = "Enter next service date" });
             _kilometer.Validations.Add(new IsValidNumericRule<double> { ValidationMessage = "Enter next service kilometer" });
-        }
-
-        #endregion
-
-        #region Override Methods
-
-        public override Task InitializeAsync(object navigationData)
-        {
-            if (navigationData != null)
-            {
-                Model = navigationData as ValidatableObject<string>;
-            }
-            return base.InitializeAsync(navigationData);
         }
 
         #endregion

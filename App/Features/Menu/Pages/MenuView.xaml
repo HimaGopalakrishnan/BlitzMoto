@@ -3,7 +3,8 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             x:Class="App.Features.Menu.Pages.MenuView"
             xmlns:pages="clr-namespace:App.Features.Menu.Pages"
-            xmlns:home="clr-namespace:App.Features.Home">
+            xmlns:home="clr-namespace:App.Features.Home"
+            NavigationPage.HasNavigationBar="False">
   <FlyoutPage.Flyout>
     <pages:MenuViewFlyout x:Name="FlyoutPage" />
   </FlyoutPage.Flyout>

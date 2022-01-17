@@ -1,10 +1,5 @@
 ﻿using App.Features.SpareParts.Models;
-using App.Features.SpareParts.Services;
-using App.Providers.Api.Services;
-using App.Providers.Database.Services;
-using App.Providers.Dialog.Services;
 using App.Providers.Navigation.Base;
-using App.Providers.Navigation.Services;
 using App.Providers.Validation;
 using App.Providers.Validation.Rules;
 using App.Resx;
@@ -17,16 +12,6 @@ namespace App.Features.SpareParts.Pages.Add
 {
     public class AddSpareViewModel : ViewModelBase
     {
-        #region Services
-
-        readonly IApiCallManager _apiCallManager;
-        readonly ISpareService _spareService;
-        readonly ISQLiteService _sqliteService;
-        readonly INavigationService _navigationService;
-        readonly IDialogService _dialogService;
-
-        #endregion
-
         #region Commands
 
         public ICommand AddCommand { get; set; }
@@ -67,15 +52,8 @@ namespace App.Features.SpareParts.Pages.Add
 
         #region Constructor
 
-        public AddSpareViewModel(IApiCallManager apiCallManager,ISpareService spareService,
-                                 ISQLiteService sqliteService, INavigationService navigationService,
-                                 IDialogService dialogService)
+        public AddSpareViewModel()
         {
-            _apiCallManager = apiCallManager;
-            _spareService = spareService;
-            _sqliteService = sqliteService;
-            _navigationService = navigationService;
-            _dialogService = dialogService;
             AddCommand = new Command(async () => await Add());
 
             PartNumber = new ValidatableObject<string>();
@@ -97,18 +75,18 @@ namespace App.Features.SpareParts.Pages.Add
             if (isValid)
             {
                 var spare = new SparePart { Number = PartNumber.Value, Name = Spare.Value, Quantity = Convert.ToInt32(Quantity.Value), Price = Convert.ToDouble(Price.Value) };
-                await _apiCallManager.ExecuteCall(() => _spareService.AddSpare(spare),
+                await ApiCallManager.ExecuteCall(() => SpareService.AddSpare(spare),
                     async response =>
                     {
-                        var id = await _sqliteService.SaveItemAsync(spare);
-                        _dialogService.Toast(AppResources.Data_Added);
-                        await _navigationService.RemoveLastPageAsync();
+                        var id = await SqliteService.SaveItemAsync(spare);
+                        DialogService.Toast(AppResources.Data_Added);
+                        await NavigationService.RemoveLastPageAsync();
                     },
                     error =>
                     {
-                        _dialogService.HideLoading();
+                        DialogService.HideLoading();
 
-                    }, true, AppResources.Loading);
+                    }, showBusy: true, busyMessage: AppResources.Loading, ignoreCache: true);
             }
         }
 

@@ -164,6 +164,12 @@
         <Setter Property="HorizontalOptions" Value="Start" />
     </Style>
 
+    <Style x:Key="ListItemLabelStyle" TargetType="Label"
+           BasedOn="{StaticResource ListLabelStyle}">
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Fill" />
+    </Style>
+
     <Style x:Key="TitleLabelStyle" TargetType="Label">
         <Setter Property="FontSize" Value="{StaticResource TitleLabelSize}" />
         <Setter Property="FontFamily" Value="{StaticResource PrimaryFontBold}" />

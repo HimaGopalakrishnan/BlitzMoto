@@ -6,6 +6,7 @@ using App.Constants;
 using App.Features.Accessories.Pages.List;
 using App.Features.SpareParts.Pages.List;
 using App.Features.User.Pages.Login;
+using App.Features.User.Services;
 using App.Providers.Dialog.Services;
 using App.Providers.Navigation.Base;
 using App.Providers.Navigation.Services;
@@ -59,10 +60,10 @@ namespace App.Features.Home
 
         async Task NavigateToPage(string view)
         {
-            if (!Preferences.Get(PreferenceConstants.IsLoggedIn, false))
+            if (!DependencyService.Get<IUserService>().IsSignIn())
             {
                 _dialogService.Alert("Please login to continue");
-                //await _navigationService.NavigateToAsync<LoginViewModel>();
+                await _navigationService.NavigateToAsync<LoginViewModel>();
                 return;
             }
             switch (view)
@@ -70,7 +71,7 @@ namespace App.Features.Home
                 case NavigationConstants.Updates:
                     break;
                 case NavigationConstants.Accessories:
-                    await _navigationService.NavigateToAsync<AccessoriesListViewModel>();
+                    await Application.Current.MainPage.Navigation.PushAsync(new AccessoriesListView());
                     break;
                 case NavigationConstants.Gears:
                     break;
@@ -81,7 +82,7 @@ namespace App.Features.Home
                 case NavigationConstants.Service:
                     break;
                 case NavigationConstants.Spare:
-                    await _navigationService.NavigateToAsync<SpareListViewModel>();
+                    await Application.Current.MainPage.Navigation.PushAsync(new SpareListView());
                     break;
                 case NavigationConstants.Whatsapp:
                     try

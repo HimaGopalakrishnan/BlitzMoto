@@ -1,16 +1,15 @@
 ﻿using App.Constants;
 using App.Features.Menu.Pages;
-using App.Features.User.Models;
 using App.Features.User.Services;
 using App.Providers.Dialog.Services;
 using App.Providers.Navigation.Base;
 using App.Providers.Navigation.Services;
 using App.Providers.Validation;
-using App.Providers.Validation.Rules;
 using App.Resx;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Essentials;
+using System.Threading.Tasks;
 
 namespace App.Features.User.Pages.Login
 {
@@ -18,7 +17,6 @@ namespace App.Features.User.Pages.Login
     {
         #region Services
 
-        IUserService _userService;
         readonly INavigationService _navigationService;
         readonly IDialogService _dialogService;
 
@@ -63,7 +61,7 @@ namespace App.Features.User.Pages.Login
             _navigationService = ViewModelLocator.Resolve<INavigationService>();
             _dialogService = ViewModelLocator.Resolve<IDialogService>();
 
-            LoginCommand = new Command(Login);
+            LoginCommand = new Command(async () => await Login());
             EyeImageClickedCommand = new Command(EyeImageClicked);
 
             Email = new ValidatableObject<string>();
@@ -80,32 +78,27 @@ namespace App.Features.User.Pages.Login
             IsPassword = !IsPassword;
         }
 
-        void Login()
+        async Task Login()
         {
             bool isValid = Validate();
             if (isValid)
             {
-                _userService = DependencyService.Get<IUserService>();
+                await ApiCallManager.ExecuteCall(() => UserService.SignIn(Email.Value, Password.Value),
+                    token =>
+                    {
+                        if (!string.IsNullOrEmpty(token))
+                        {
+                            Preferences.Set(PreferenceConstants.IsAdmin, Email.Value.Trim().Equals(UserDetails.AdminEmail));
+                            Preferences.Set(PreferenceConstants.Username, Email.Value.Trim());
+                            Preferences.Set(PreferenceConstants.Password, Password.Value.Trim());
+                            Application.Current.MainPage = new MenuView();
+                        }
+                    },
+                    error =>
+                    {
+                        _dialogService.Alert(AppResources.Message_Login_Failed);
 
-                var model = new LoginRequestModel
-                {
-                    Email = Email.Value,
-                    Password = Password.Value
-                };
-
-                var loginResult = _userService.Login(model);
-                if (loginResult != null)
-                {
-                    Preferences.Set(PreferenceConstants.IsAdmin, Email.Value.Trim().Equals(UserDetails.AdminEmail));
-                    Preferences.Set(PreferenceConstants.IsLoggedIn, true);
-                    Preferences.Set(PreferenceConstants.Username, Email.Value.Trim());
-                    Preferences.Set(PreferenceConstants.Password, Password.Value.Trim());
-                    Application.Current.MainPage = new MenuView();
-                }
-                else
-                {
-                    _dialogService.Alert(AppResources.Message_Login_Failed);
-                }
+                    }, showBusy: true, busyMessage: AppResources.Loading, ignoreCache: true);
             }
         }
 
@@ -129,8 +122,8 @@ namespace App.Features.User.Pages.Login
 
         void AddValidations()
         {
-            _email.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = AppResources.Message_Enter_Email });
-            _email.Validations.Add(new IsValidEmailRule<string> { ValidationMessage = AppResources.Message_Enter_Valid_Email });
+            //_email.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = AppResources.Message_Enter_Email });
+            //_email.Validations.Add(new IsValidEmailRule<string> { ValidationMessage = AppResources.Message_Enter_Valid_Email });
             //_password.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = AppResources.Message_Enter_Password });
             //_password.Validations.Add(new IsValidPasswordRule<string> { ValidationMessage = AppResources.Message_Enter_Password_With_Eight_Characters });
         }

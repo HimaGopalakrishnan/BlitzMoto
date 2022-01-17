@@ -26,7 +26,9 @@ namespace App.Features.Vehicles.Services
               .Child("Vehicles")
               .OnceAsync<Vehicle>()).Select(item => new Vehicle
               {
-                  Name = item.Object.Name,
+                  OwnerName = item.Object.OwnerName,
+                  ContactNumber = item.Object.ContactNumber,
+                  VehicleName = item.Object.VehicleName,
                   Model = item.Object.Model,
                   CaseNumber = item.Object.CaseNumber,
                   EngineNumber = item.Object.EngineNumber,
@@ -48,13 +50,13 @@ namespace App.Features.Vehicles.Services
             return true;
         }
 
-        public async Task<Vehicle> GetVehicleDetails(int id)
+        public async Task<Vehicle> GetVehicleDetails(string caseNumber)
         {
-            var allSpares = await GetAllVehicleDetails();
+            var allVehicles = await GetAllVehicleDetails();
             await FirebaseClient
               .Child("Vehicles")
               .OnceAsync<Vehicle>();
-            return allSpares.Where(x => x.Id == id).FirstOrDefault();
+            return allVehicles.Where(x => x.CaseNumber == caseNumber).FirstOrDefault();
         }
 
         public async Task UpdateVehicleDetails(Vehicle spare)

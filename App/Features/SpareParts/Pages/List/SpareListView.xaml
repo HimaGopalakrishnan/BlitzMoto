@@ -7,38 +7,39 @@
     x:Class="App.Features.SpareParts.Pages.List.SpareListView"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
     <ContentPage.Content>
-        <Grid RowDefinitions="*,Auto"
+        <Grid RowDefinitions="50,Auto,*,Auto"
+              ColumnDefinitions="*,3*"
               Style="{StaticResource BaseGridStyle}">
-            <CollectionView x:Name="list" Grid.RowSpan="2" ItemsSource="{Binding Spares}">
-                <CollectionView.HeaderTemplate>
-                    <DataTemplate>
-                        <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="50,*,Auto,Auto"
-                              Padding="0">
-                            <SearchBar x:Name="searchBar" Grid.Column="3"
-                                       SearchCommand="{Binding BindingContext.SearchCommand,Source={x:Reference list}}"
-                                       SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
-                            <Label Grid.Row="1" Grid.Column="1" Text="Name"
-                                   Style="{StaticResource ListLabelStyle}"/>
-                            <Label Grid.Row="1" Grid.Column="2" Text="Quantity"
-                                   Style="{StaticResource ListLabelStyle}"/>
-                            <Label Grid.Row="1" Grid.Column="3" Text="Price"
-                                   Style="{StaticResource ListLabelStyle}"/>
-                            <BoxView Grid.Row="2" Grid.ColumnSpan="4"
-                                     Style="{StaticResource HorizontalSeparatorStyle}"/>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.HeaderTemplate>
+            <SearchBar x:Name="searchBar" Grid.Column="1" Margin="{StaticResource bottom_10}"
+                       SearchCommand="{Binding BindingContext.SearchCommand,Source={x:Reference list}}"
+                       SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
+            <Grid Grid.Row="1" Grid.ColumnSpan="2"
+                  RowDefinitions="Auto,Auto,Auto"
+                  ColumnDefinitions="50,*,50,50"
+                  Padding="0">
+                <Label Grid.Row="1" Grid.Column="1" Text="Name"
+                       Style="{StaticResource ListLabelStyle}"/>
+                <Label Grid.Row="1" Grid.Column="2" Text="Quantity"
+                       Style="{StaticResource ListItemLabelStyle}"/>
+                <Label Grid.Row="1" Grid.Column="3" Text="Price"
+                       Style="{StaticResource ListItemLabelStyle}"/>
+                <BoxView Grid.Row="2" Grid.ColumnSpan="4"
+                         Style="{StaticResource HorizontalSeparatorStyle}"/>
+            </Grid>
+            <CollectionView x:Name="list" Grid.Row="2" Grid.RowSpan="2"
+                            Grid.ColumnSpan="2"
+                            ItemsSource="{Binding Spares,Mode=TwoWay}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid RowDefinitions="*,Auto" ColumnDefinitions="Auto,*,Auto,Auto"
-                              Padding="{StaticResource padding_10}">
-                            <ffimageloading:CachedImage Source="dashboard"/>
+                        <Grid RowDefinitions="*,Auto" ColumnDefinitions="50,*,50,50">
+                            <ffimageloading:CachedImage Source="dashboard"
+                                                        Style="{StaticResource IconStyle}"/>
                             <Label Grid.Column="1" Text="{Binding Name}"
                                    Style="{StaticResource ListLabelStyle}"/>
                             <Label Grid.Column="2" Text="{Binding Quantity}"
-                                   Style="{StaticResource ListLabelStyle}"/>
+                                   Style="{StaticResource ListItemLabelStyle}"/>
                             <Label Grid.Column="3" Text="{Binding Price}"
-                                   Style="{StaticResource ListLabelStyle}"/>
+                                   Style="{StaticResource ListItemLabelStyle}"/>
                             <BoxView Grid.Row="1" Grid.ColumnSpan="4"
                                      Style="{StaticResource HorizontalSeparatorStyle}"/>
                             <!--<Grid.GestureRecognizers>
@@ -52,11 +53,11 @@
                     <StackLayout>
                         <Label Style="{StaticResource ListLabelStyle}"
                                HorizontalOptions="Center"
-                               Text="No items found"/>
+                               Text="No item found"/>
                     </StackLayout>
                 </CollectionView.EmptyView>
             </CollectionView>
-            <Frame Grid.Row="1" Style="{StaticResource ImageBorderStyle}"
+            <Frame Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ImageBorderStyle}"
                    VerticalOptions="End" HorizontalOptions="End" CornerRadius="30"
                    BackgroundColor="Red"
                    Margin="{StaticResource bottom_10}">

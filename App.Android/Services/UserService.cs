@@ -1,71 +1,42 @@
 ﻿using System.Threading.Tasks;
-using Android.App;
-using Android.Gms.Tasks;
 using App.Droid.Services;
-using App.Features.User.Models;
 using App.Features.User.Services;
-using Firebase;
 using Firebase.Auth;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(UserService))]
 namespace App.Droid.Services
 {
-    public class UserService : Activity, IUserService, IOnCompleteListener
+    public class UserService : IUserService
     {
-        #region Services
+        public bool IsSignIn()
+            => FirebaseAuth.Instance.CurrentUser != null;
 
-        public static FirebaseApp app;
-        FirebaseAuth auth;
-
-        #endregion
-
-        #region Constructor
-
-        public UserService()
+        public async Task<bool> CreateUser(string username, string email, string password)
         {
-            InitFirebaseAuth();
+            var authResult = await FirebaseAuth.Instance
+                    .CreateUserWithEmailAndPasswordAsync(email, password);
+
+            var userProfileChangeRequestBuilder = new UserProfileChangeRequest.Builder();
+            userProfileChangeRequestBuilder.SetDisplayName(username);
+
+            var userProfileChangeRequest = userProfileChangeRequestBuilder.Build();
+            await authResult.User.UpdateProfileAsync(userProfileChangeRequest);
+
+            return await Task.FromResult(true);
         }
 
-        #endregion
-
-        #region Methods
-
-        void InitFirebaseAuth()
+        public async Task<string> SignIn(string email, string password)
         {
-            var options = new FirebaseOptions.Builder()
-               .SetApplicationId("1:717310474757:android:b942e48873963e6b41ba6c")
-               .SetApiKey("AIzaSyAMOhERVNoHzQqkZIbtKKVqDScsAykHHhs")
-               .Build();
-            if (app == null)
-                app = FirebaseApp.InitializeApp(this, options);
-            auth = FirebaseAuth.GetInstance(app);
+            var authResult = await FirebaseAuth.Instance.SignInWithEmailAndPasswordAsync(email, password);
+            var token = await authResult.User.GetIdTokenAsync(false);
+            return token.Token;
         }
 
-        public LoginResponseModel Login(LoginRequestModel model)
-        {
-            var task = auth.SignInWithEmailAndPassword(model.Email, model.Password);
+        public void SignOut()
+            => FirebaseAuth.Instance.SignOut();
 
-            if (task.IsSuccessful)
-            {
-                return new LoginResponseModel();
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public Task<LoginResponseModel> Register(LoginRequestModel model)
-        {
-            return null;
-        }
-
-        public void OnComplete(Android.Gms.Tasks.Task task)
-        {
-            
-        }
-
-        #endregion
+        public async Task ResetPassword(string email)
+            => await FirebaseAuth.Instance.SendPasswordResetEmailAsync(email);
     }
 }

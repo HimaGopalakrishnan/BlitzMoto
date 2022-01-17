@@ -8,7 +8,7 @@ namespace App.Features.Vehicles.Services
     {
         Task<List<Vehicle>> GetAllVehicleDetails();
         Task<bool> SaveVehicleDetails(Vehicle vehicle);
-        Task<Vehicle> GetVehicleDetails(int id);
+        Task<Vehicle> GetVehicleDetails(string caseNumber);
         Task UpdateVehicleDetails(Vehicle spare);
         Task DeleteVehicleDetails(int id);
     }

@@ -36,7 +36,7 @@ namespace App
         {
             base.OnStart();
             await _navigationService.InitializeAsync();
-            MainPage = new MenuView();
+            MainPage = new NavigationPage(new MenuView());
         }
 
         protected override void OnSleep()

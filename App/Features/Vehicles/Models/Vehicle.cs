@@ -6,7 +6,9 @@ namespace App.Features.Vehicles.Models
 {
     public class Vehicle : BaseModel
     {
-        public string Name { get; set; }
+        public string OwnerName { get; set; }
+        public string ContactNumber { get; set; }
+        public string VehicleName { get; set; }
         public string Model { get; set; }
         public string CaseNumber { get; set; }
         public string EngineNumber { get; set; }

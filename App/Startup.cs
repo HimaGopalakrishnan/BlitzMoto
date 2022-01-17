@@ -22,6 +22,8 @@ using App.Features.SpareParts.Pages.Add;
 using App.Features.SpareParts.Pages.List;
 using App.Features.Vehicles.Pages.Detail;
 using App.Features.User.Pages.Register;
+using App.Features.Vehicles.Pages.Add;
+using App.Features.Vehicles.Pages.List;
 
 namespace App
 {
@@ -68,7 +70,9 @@ namespace App
             services.AddTransient<AddAccessoriesViewModel>();
             services.AddTransient<SpareListViewModel>();
             services.AddTransient<AddSpareViewModel>();
+            services.AddTransient<VehicleListViewModel>();
             services.AddTransient<VehicleDetailsViewModel>();
+            services.AddTransient<AddVehicleViewModel>();
 
             #endregion
 

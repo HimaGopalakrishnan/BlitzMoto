@@ -1,21 +1,11 @@
 ﻿using App.Constants;
 using App.Features.SpareParts.Models;
 using App.Features.Vehicles.Models;
-using App.Features.Vehicles.Pages.Add;
-using App.Features.Vehicles.Services;
-using App.Providers.Api.Services;
-using App.Providers.Database.Services;
-using App.Providers.Dialog.Services;
 using App.Providers.Navigation.Base;
-using App.Providers.Navigation.Services;
-using App.Providers.Validation;
-using App.Providers.Validation.Rules;
 using App.Resx;
 using System;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Xamarin.Essentials;
-using Xamarin.Forms;
 
 namespace App.Features.Vehicles.Pages.Detail
 {
@@ -38,13 +28,6 @@ namespace App.Features.Vehicles.Pages.Detail
         }
 
         public bool IsAdmin { get; set; }
-
-        ValidatableObject<string> _vehicleNumber;
-        public ValidatableObject<string> VehicleNumber
-        {
-            get => _vehicleNumber;
-            set => SetProperty(ref _vehicleNumber, value);
-        }
 
         string _name;
         public string Name
@@ -118,111 +101,48 @@ namespace App.Features.Vehicles.Pages.Detail
 
         #endregion
 
-        #region Services
-
-        readonly IApiCallManager _apiCallManager;
-        readonly ISQLiteService _sqliteService;
-        readonly INavigationService _navigationService;
-        readonly IVehicleService _vehicleService;
-        readonly IDialogService _dialogService;
-
-        #endregion
-
-        #region Command
-
-        public ICommand FetchDataCommand { get; set; }
-        public ICommand AddVehicleCommand { get; set; }
-
-        #endregion
-
         #region Constructor
 
-        public VehicleDetailsViewModel(IApiCallManager apiCallManager, ISQLiteService sqliteService,
-                                        INavigationService navigationService, IVehicleService vehicleService,
-                                        IDialogService dialogService)
+        public VehicleDetailsViewModel()
         {
-            _apiCallManager = apiCallManager;
-            _sqliteService = sqliteService;
-            _navigationService = navigationService;
-            _vehicleService = vehicleService;
-            _dialogService = dialogService;
-
             IsAdmin = Preferences.Get(PreferenceConstants.IsAdmin, false);
-            VehicleNumber = new ValidatableObject<string>();
-            AddValidations();
-
-            FetchDataCommand = new Command(FetchData);
-            AddVehicleCommand = new Command(async () => await NavigateToAddVehiclePage());
         }
 
         #endregion
 
         #region Methods
 
-        void FetchData()
+        public async Task GetVehicleDetails(string caseNumber)
         {
-            IsDataFetched = true;
-        }
+            Vehicle vehicle = null;
 
-        async Task NavigateToAddVehiclePage()
-        {
-            await _navigationService.NavigateToAsync<AddVehicleViewModel>();
-        }
+            await ApiCallManager.ExecuteCall(() => VehicleService.GetVehicleDetails(caseNumber),
+                    response =>
+                    {
+                        IsVisible = response != null;
+                        vehicle = response;
+                    },
+                    async error =>
+                    {
+                        IsVisible = false;
+                        vehicle = await SqliteService.GetItemAsync<Vehicle>(0);
+                        DialogService.HideLoading();
 
-        async Task GetVehicleDetails()
-        {
-            if (Validate())
+                    }, true, AppResources.Loading);
+
+            if (vehicle != null)
             {
-                Vehicle vehicle = null;
-
-                await _apiCallManager.ExecuteCall(() => _vehicleService.GetVehicleDetails(0),
-                        response =>
-                        {
-                            IsVisible = response != null;
-                            vehicle = response;
-                        },
-                        async error =>
-                        {
-                            IsVisible = false;
-                            vehicle = await _sqliteService.GetItemAsync<Vehicle>(0);
-                            _dialogService.HideLoading();
-
-                        }, true, AppResources.Loading);
-
-                if (vehicle != null)
-                {
-                    Name = vehicle.Name;
-                    Model = vehicle.Model;
-                    CaseNumber = vehicle.CaseNumber;
-                    EngineNumber = vehicle.EngineNumber;
-                    ServiceDate = vehicle.ServiceDate;
-                    NextServiceDate = vehicle.NextServiceDate;
-                    Spare = vehicle.SpareUsed;
-                    SpareCount = vehicle.SpareCount;
-                    Kilometer = vehicle.Kilometer;
-                    Note = vehicle.Note;
-                }
+                Name = vehicle.OwnerName;
+                Model = vehicle.Model;
+                CaseNumber = vehicle.CaseNumber;
+                EngineNumber = vehicle.EngineNumber;
+                ServiceDate = vehicle.ServiceDate;
+                NextServiceDate = vehicle.NextServiceDate;
+                Spare = vehicle.SpareUsed;
+                SpareCount = vehicle.SpareCount;
+                Kilometer = vehicle.Kilometer;
+                Note = vehicle.Note;
             }
-        }
-
-        bool Validate()
-        {
-            _vehicleNumber.Validate();
-            return _vehicleNumber.IsValid;
-        }
-
-        void AddValidations()
-        {
-            _vehicleNumber.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = AppResources.Enter_Valid_Data });
-        }
-
-        #endregion
-
-        #region Override Methods
-
-        public override async Task InitializeAsync(object navigationData)
-        {
-            await GetVehicleDetails();
         }
 
         #endregion

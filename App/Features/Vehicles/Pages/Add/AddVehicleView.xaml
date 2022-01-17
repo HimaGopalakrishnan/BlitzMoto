@@ -3,9 +3,42 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="App.Features.Vehicles.Pages.Add.AddVehicleView"
-    xmlns:viewModelBase="clr-namespace:App;assembly=App"
+    xmlns:viewModelBase="clr-namespace:App;assembly=App" xmlns:controls="clr-namespace:App.Controls"
     viewModelBase:ViewModelLocator.AutoWireViewModel="true">
     <ContentPage.Content>
-        
+        <ScrollView>
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                  Style="{StaticResource BaseGridStyle}">
+                <Label Text="Owner Name" Style="{StaticResource PlaceholderLabelStyle}"/>
+                <controls:ValidatorControl Grid.Row="1" Text="{Binding OwnerName.Value,Mode=TwoWay}"
+                                           ErrorText="{Binding OwnerName.Errors,Converter={StaticResource EntryErrorConverter}}"/>
+                <Label Grid.Row="2" Text="Phone number" Style="{StaticResource PlaceholderLabelStyle}"/>
+                <controls:ValidatorControl Grid.Row="3" Text="{Binding Phone.Value,Mode=TwoWay}"
+                                           ErrorText="{Binding Phone.Errors,Converter={StaticResource EntryErrorConverter}}"/>
+                <Label Text="Vehicle Name" Grid.Row="4" Style="{StaticResource PlaceholderLabelStyle}"/>
+                <controls:ValidatorControl Grid.Row="5" Text="{Binding VehicleName.Value,Mode=TwoWay}"
+                                           ErrorText="{Binding VehicleName.Errors,Converter={StaticResource EntryErrorConverter}}"/>
+                <Label Grid.Row="6" Text="Model" Style="{StaticResource PlaceholderLabelStyle}"/>
+                <Picker Grid.Row="7" ItemsSource="{Binding Models}" SelectedItem="{Binding Model.Value}"/>
+                <Label Grid.Row="8" Text="Case number" Style="{StaticResource PlaceholderLabelStyle}"/>
+                <controls:ValidatorControl Grid.Row="9" Text="{Binding CaseNumber.Value,Mode=TwoWay}"
+                                           ErrorText="{Binding CaseNumber.Errors,Converter={StaticResource EntryErrorConverter}}"/>
+                <Label Grid.Row="10" Text="Engine number" Style="{StaticResource PlaceholderLabelStyle}"/>
+                <controls:ValidatorControl Grid.Row="11" Text="{Binding EngineNumber.Value,Mode=TwoWay}"
+                                           ErrorText="{Binding EngineNumber.Errors,Converter={StaticResource EntryErrorConverter}}"/>
+                <Label Grid.Row="12" Text="Service date" Style="{StaticResource PlaceholderLabelStyle}"/>
+                <DatePicker Grid.Row="13" Date="{Binding ServiceDate.Value}"/>
+                <Label Grid.Row="14" Text="Next service date" Style="{StaticResource PlaceholderLabelStyle}"/>
+                <DatePicker Grid.Row="15" Date="{Binding NextServiceDate.Value}"/>
+                <Label Grid.Row="16" Text="Kilometer" Style="{StaticResource PlaceholderLabelStyle}"/>
+                <controls:ValidatorControl Grid.Row="17" Text="{Binding Kilometer.Value,Mode=TwoWay}"
+                                           ErrorText="{Binding Kilometer.Errors,Converter={StaticResource EntryErrorConverter}}"/>
+                <Label Grid.Row="18" Text="Note" Style="{StaticResource PlaceholderLabelStyle}"/>
+                <Editor Grid.Row="19" Text="{Binding Note}"/>
+                <Button Grid.Row="20" Text="Add"
+                        Style="{StaticResource BaseButtonStyle}"
+                        Command="{Binding AddVehicleCommand}"/>
+            </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

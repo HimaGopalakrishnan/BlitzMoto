@@ -1,10 +1,5 @@
 ﻿using App.Features.Accessories.Models;
-using App.Features.Accessories.Services;
-using App.Providers.Api.Services;
-using App.Providers.Database.Services;
-using App.Providers.Dialog.Services;
 using App.Providers.Navigation.Base;
-using App.Providers.Navigation.Services;
 using App.Providers.Validation;
 using App.Providers.Validation.Rules;
 using App.Resx;
@@ -17,16 +12,6 @@ namespace App.Features.Accessories.Pages.Add
 {
     public class AddAccessoriesViewModel : ViewModelBase
     {
-        #region Services
-
-        readonly IApiCallManager _apiCallManager;
-        readonly IAccessoriesService _accessoriesService;
-        readonly ISQLiteService _sqliteService;
-        readonly INavigationService _navigationService;
-        readonly IDialogService _dialogService;
-
-        #endregion
-
         #region Commands
 
         public ICommand AddCommand { get; set; }
@@ -74,15 +59,8 @@ namespace App.Features.Accessories.Pages.Add
 
         #region Constructor
 
-        public AddAccessoriesViewModel(IApiCallManager apiCallManager, IAccessoriesService accessoriesService,
-                                       ISQLiteService sqliteService, INavigationService navigationService,
-                                       IDialogService dialogService)
+        public AddAccessoriesViewModel()
         {
-            _apiCallManager = apiCallManager;
-            _accessoriesService = accessoriesService;
-            _sqliteService = sqliteService;
-            _navigationService = navigationService;
-            _dialogService = dialogService;
             AddCommand = new Command(async () => await Add());
 
             PartNumber = new ValidatableObject<string>();
@@ -104,18 +82,18 @@ namespace App.Features.Accessories.Pages.Add
             if (isValid)
             {
                 var accessory = new Accessory { Number = PartNumber.Value, Name = Accessory.Value, Quantity = Convert.ToInt32(Quantity.Value), Price = Convert.ToDouble(Price.Value) };
-                await _apiCallManager.ExecuteCall(() => _accessoriesService.AddAccessory(accessory),
+                await ApiCallManager.ExecuteCall(() => AccessoriesService.AddAccessory(accessory),
                     async response =>
                     {
-                        var id = await _sqliteService.SaveItemAsync(accessory);
-                        _dialogService.Toast(AppResources.Data_Added);
-                        await _navigationService.RemoveLastPageAsync();
+                        var id = await SqliteService.SaveItemAsync(accessory);
+                        DialogService.Toast(AppResources.Data_Added);
+                        await NavigationService.RemoveLastPageAsync();
                     },
                     error =>
                     {
-                        _dialogService.HideLoading();
+                        DialogService.HideLoading();
 
-                    }, true, AppResources.Loading);
+                    }, showBusy: true, busyMessage: AppResources.Loading, ignoreCache: true);
             }
         }
 

@@ -4,19 +4,38 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="App.Features.Vehicles.Pages.List.VehicleListView"
     xmlns:viewModelBase="clr-namespace:App;assembly=App"
-    viewModelBase:ViewModelLocator.AutoWireViewModel="true">
+    viewModelBase:ViewModelLocator.AutoWireViewModel="true"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
     <ContentPage.Content>
-        <Grid Style="{StaticResource BaseGridStyle}">
-            <CollectionView x:Name="list" Grid.RowSpan="2" ItemsSource="{Binding Vehicles}">
+        <Grid RowDefinitions="50,*,Auto"
+              ColumnDefinitions="*,3*"
+              Style="{StaticResource BaseGridStyle}">
+            <SearchBar x:Name="searchBar" Grid.Column="1" Margin="{StaticResource bottom_10}"
+                       SearchCommand="{Binding BindingContext.SearchCommand,Source={x:Reference list}}"
+                       SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
+            <CollectionView x:Name="list" Grid.Row="1" Grid.RowSpan="2"
+                            Grid.ColumnSpan="2"
+                            ItemsSource="{Binding Vehicles,Mode=TwoWay}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid RowDefinitions="Auto,Auto"
-                              Padding="{StaticResource padding_10}">
-                            <Label Text="{Binding Model}" Style="{StaticResource ListLabelStyle}"/>
-                            <BoxView Grid.Row="1" Style="{StaticResource HorizontalSeparatorStyle}"/>
+                        <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="*,*">
+                            <Label Text="{Binding OwnerName}"
+                                   Style="{StaticResource ListLabelStyle}"/>
+                            <Label Grid.Column="1" Text="{Binding ContactNumber}"
+                                   Style="{StaticResource ListLabelStyle}"/>
+                            <Label Grid.Row="1" Text="{Binding VehicleName}"
+                                   Style="{StaticResource ListLabelStyle}"/>
+                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Model}"
+                                   Style="{StaticResource ListLabelStyle}"/>
+                            <Label Grid.Row="2" Text="{Binding ServiceDate,StringFormat='{}{0:dd MMM yyyy}'}"
+                                   Style="{StaticResource ListLabelStyle}"/>
+                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding NextServiceDate,StringFormat='{}{0:dd MMM yyyy}'}"
+                                   Style="{StaticResource ListLabelStyle}"/>
+                            <BoxView Grid.Row="3" Grid.ColumnSpan="2"
+                                     Style="{StaticResource HorizontalSeparatorStyle}"/>
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding BindingContext.VehicleSelectedCommand,Source={x:Reference list}}"
-                                                      CommandParameter="{Binding Model}"/>
+                                                      CommandParameter="{Binding .}"/>
                             </Grid.GestureRecognizers>
                         </Grid>
                     </DataTemplate>
@@ -25,10 +44,20 @@
                     <StackLayout>
                         <Label Style="{StaticResource ListLabelStyle}"
                                HorizontalOptions="Center"
-                               Text="No vehicle found"/>
+                               Text="No item found"/>
                     </StackLayout>
                 </CollectionView.EmptyView>
             </CollectionView>
+            <Frame Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ImageBorderStyle}"
+                   VerticalOptions="End" HorizontalOptions="End" CornerRadius="30"
+                   BackgroundColor="Red"
+                   Margin="{StaticResource bottom_10}">
+                <ffimageloading:CachedImage Source="add">
+                    <ffimageloading:CachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AddIconTappedCommand}"/>
+                    </ffimageloading:CachedImage.GestureRecognizers>
+                </ffimageloading:CachedImage>
+            </Frame>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
