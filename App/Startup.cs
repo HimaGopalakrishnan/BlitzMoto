@@ -24,6 +24,7 @@ using App.Features.Vehicles.Pages.Detail;
 using App.Features.User.Pages.Register;
 using App.Features.Vehicles.Pages.Add;
 using App.Features.Vehicles.Pages.List;
+using App.Features.User.Services;
 
 namespace App
 {
@@ -86,6 +87,7 @@ namespace App
             services.AddTransient<IRetryService, RetryService>();
             services.AddTransient<ICacheService, CacheService>();
 
+            services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IAccessoriesService, AccessoriesService>();
             services.AddSingleton<ISpareService, SpareService>();
             services.AddSingleton<IVehicleService, VehicleService>();

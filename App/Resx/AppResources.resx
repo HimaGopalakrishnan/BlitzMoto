@@ -43,6 +43,9 @@
 	<data name="Email" xml:space="preserve">
 		<value>Email</value>
 	</data>
+	<data name="RegisteredMobile" xml:space="preserve">
+		<value>Registered Mobile Number</value>
+	</data>
 	<data name="Password" xml:space="preserve">
 		<value>Password</value>
 	</data>

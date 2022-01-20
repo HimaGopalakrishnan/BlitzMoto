@@ -1,11 +1,13 @@
 ﻿using App.Constants;
 using App.Features.SpareParts.Models;
+using App.Features.User.Pages.Login;
 using App.Features.Vehicles.Models;
 using App.Providers.Navigation.Base;
 using App.Resx;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace App.Features.Vehicles.Pages.Detail
 {
@@ -112,20 +114,26 @@ namespace App.Features.Vehicles.Pages.Detail
 
         #region Methods
 
-        public async Task GetVehicleDetails(string caseNumber)
+        public async Task GetVehicleDetails(string contactNumber)
         {
             Vehicle vehicle = null;
 
-            await ApiCallManager.ExecuteCall(() => VehicleService.GetVehicleDetails(caseNumber),
+            if (string.IsNullOrEmpty(contactNumber))
+            {
+                DialogService.Alert(AppResources.Alert, AppResources.Message_User_Verification_Failed);
+                Application.Current.MainPage = new NavigationPage(new LoginView());
+                return;
+            }
+
+            await ApiCallManager.ExecuteCall(() => VehicleService.GetVehicleDetails(contactNumber),
                     response =>
                     {
                         IsVisible = response != null;
                         vehicle = response;
                     },
-                    async error =>
+                    error =>
                     {
                         IsVisible = false;
-                        vehicle = await SqliteService.GetItemAsync<Vehicle>(0);
                         DialogService.HideLoading();
 
                     }, true, AppResources.Loading);

@@ -1,23 +1,29 @@
-﻿using Xamarin.Forms;
+﻿using App.Constants;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace App.Features.Vehicles.Pages.Detail
 {
     public partial class VehicleDetailsView : ContentPage
     {
         VehicleDetailsViewModel vm;
-        string caseNumber;
+        string contactNumber;
 
-        public VehicleDetailsView(string caseNumber)
+        public VehicleDetailsView(string contactNumber)
         {
             InitializeComponent();
             BindingContext = vm = new VehicleDetailsViewModel();
-            this.caseNumber = caseNumber;
+            this.contactNumber = contactNumber;
         }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            await vm.GetVehicleDetails(caseNumber);
+            if (string.IsNullOrEmpty(contactNumber))
+            {
+                contactNumber = Preferences.Get(PreferenceConstants.Mobile, "");
+            }
+            await vm.GetVehicleDetails(contactNumber);
         }
     }
 }

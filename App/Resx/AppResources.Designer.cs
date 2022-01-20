@@ -107,6 +107,12 @@ namespace App.Resx {
             }
         }
         
+        public static string RegisteredMobile {
+            get {
+                return ResourceManager.GetString("RegisteredMobile", resourceCulture);
+            }
+        }
+        
         public static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);

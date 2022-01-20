@@ -36,7 +36,7 @@ namespace App.Features.Menu.Pages
 
             public MenuViewFlyoutViewModel()
             {
-                bool isLoggedIn = DependencyService.Get<IUserService>().IsSignIn();
+                bool isLoggedIn = ViewModelLocator.Resolve<IUserService>().IsSignIn();
                 bool isAdmin = Preferences.Get(PreferenceConstants.IsAdmin, false);
 
                 MenuItems = new ObservableCollection<MenuViewFlyoutMenuItem>(new[]

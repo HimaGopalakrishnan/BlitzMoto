@@ -1,6 +1,5 @@
 ﻿using App.Constants;
 using App.Features.Menu.Pages;
-using App.Features.User.Services;
 using App.Providers.Dialog.Services;
 using App.Providers.Navigation.Base;
 using App.Providers.Navigation.Services;
@@ -10,6 +9,8 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Essentials;
 using System.Threading.Tasks;
+using App.Providers.Validation.Rules;
+using App.Features.User.Models;
 
 namespace App.Features.User.Pages.Login
 {
@@ -31,11 +32,11 @@ namespace App.Features.User.Pages.Login
 
         #region Properties
 
-        ValidatableObject<string> _email;
-        public ValidatableObject<string> Email
+        ValidatableObject<string> _mobile;
+        public ValidatableObject<string> Mobile
         {
-            get => _email;
-            set => SetProperty(ref _email, value);
+            get => _mobile;
+            set => SetProperty(ref _mobile, value);
         }
 
         ValidatableObject<string> _password;
@@ -45,7 +46,7 @@ namespace App.Features.User.Pages.Login
             set => SetProperty(ref _password, value);
         }
 
-        bool _isPassword;
+        bool _isPassword = true;
         public bool IsPassword
         {
             get => _isPassword;
@@ -64,7 +65,7 @@ namespace App.Features.User.Pages.Login
             LoginCommand = new Command(async () => await Login());
             EyeImageClickedCommand = new Command(EyeImageClicked);
 
-            Email = new ValidatableObject<string>();
+            Mobile = new ValidatableObject<string>();
             Password = new ValidatableObject<string>();
             AddValidations();
         }
@@ -83,15 +84,21 @@ namespace App.Features.User.Pages.Login
             bool isValid = Validate();
             if (isValid)
             {
-                await ApiCallManager.ExecuteCall(() => UserService.SignIn(Email.Value, Password.Value),
-                    token =>
+                var user = new UserModel { Mobile = Mobile.Value, Password = Password.Value };
+                await ApiCallManager.ExecuteCall(() => UserService.SignIn(user),
+                    username =>
                     {
-                        if (!string.IsNullOrEmpty(token))
+                        if (!string.IsNullOrEmpty(username))
                         {
-                            Preferences.Set(PreferenceConstants.IsAdmin, Email.Value.Trim().Equals(UserDetails.AdminEmail));
-                            Preferences.Set(PreferenceConstants.Username, Email.Value.Trim());
+                            Preferences.Set(PreferenceConstants.IsAdmin, username.Equals(UserDetails.AdminUsername));
+                            Preferences.Set(PreferenceConstants.Mobile, Mobile.Value.Trim());
+                            Preferences.Set(PreferenceConstants.Username, username);
                             Preferences.Set(PreferenceConstants.Password, Password.Value.Trim());
-                            Application.Current.MainPage = new MenuView();
+                            Application.Current.MainPage = new NavigationPage(new MenuView());
+                        }
+                        else
+                        {
+                            _dialogService.Alert(AppResources.Message_Login_Failed);
                         }
                     },
                     error =>
@@ -107,12 +114,12 @@ namespace App.Features.User.Pages.Login
             ValidateEmail();
             ValidatePassword();
 
-            return _email.IsValid && _password.IsValid;
+            return _mobile.IsValid && _password.IsValid;
         }
 
         bool ValidateEmail()
         {
-            return _email.Validate();
+            return _mobile.Validate();
         }
 
         bool ValidatePassword()
@@ -122,25 +129,11 @@ namespace App.Features.User.Pages.Login
 
         void AddValidations()
         {
-            //_email.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = AppResources.Message_Enter_Email });
-            //_email.Validations.Add(new IsValidEmailRule<string> { ValidationMessage = AppResources.Message_Enter_Valid_Email });
-            //_password.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = AppResources.Message_Enter_Password });
-            //_password.Validations.Add(new IsValidPasswordRule<string> { ValidationMessage = AppResources.Message_Enter_Password_With_Eight_Characters });
+            _mobile.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = AppResources.Message_Enter_Contact_Number });
+            _mobile.Validations.Add(new IsValidContactNumberRule<string> { ValidationMessage = AppResources.Message_Enter_Valid_Contact_Number });
+            _password.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = AppResources.Message_Enter_Password });
         }
 
         #endregion
-
-        //#region Override Methods
-
-        //public override Task InitializeAsync(object navigationData)
-        //{
-        //    if (navigationData != null)
-        //    {
-        //        Email = new ValidatableObject<string> { Value = navigationData as string };
-        //    }
-        //    return base.InitializeAsync(navigationData);
-        //}
-
-        //#endregion
     }
 }

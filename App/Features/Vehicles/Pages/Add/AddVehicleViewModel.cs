@@ -1,4 +1,5 @@
 ﻿using App.Features.SpareParts.Models;
+using App.Features.User.Models;
 using App.Features.Vehicles.Models;
 using App.Providers.Navigation.Base;
 using App.Providers.Validation;
@@ -135,8 +136,8 @@ namespace App.Features.Vehicles.Pages.Add
                 var vehicle = new Vehicle
                 {
                     OwnerName = OwnerName.Value,
-                    ContactNumber=Phone.Value,
-                    VehicleName=VehicleName.Value,
+                    ContactNumber = Phone.Value,
+                    VehicleName = VehicleName.Value,
                     Model = Model.Value,
                     CaseNumber = CaseNumber.Value,
                     EngineNumber = EngineNumber.Value,
@@ -148,14 +149,18 @@ namespace App.Features.Vehicles.Pages.Add
                 await ApiCallManager.ExecuteCall(() => VehicleService.SaveVehicleDetails(vehicle),
                         async response =>
                         {
-                            //var id = await SqliteService.SaveItemAsync(vehicle);
-                            DialogService.Toast(AppResources.Data_Added);
-                            await UserService.CreateUser(OwnerName.Value, Phone.Value, EngineNumber.Value);
+                            var tasks = new List<Task>();
+                            tasks.Add(AddUser());
                             if (vehicle.SpareUsed != null && vehicle.SpareCount > 0)
                             {
-                                await UpdateSpareDetails(vehicle);
+                                tasks.Add(UpdateSpareDetails(vehicle));
                             }
-                            await NavigationService.RemoveLastPageAsync();
+                            await Task.WhenAll(tasks).ContinueWith(async _ =>
+                            {
+                                DialogService.HideLoading();
+                                DialogService.Toast(AppResources.Data_Added);
+                                await Application.Current.MainPage.Navigation.PopAsync();
+                            });
                         },
                         error =>
                         {
@@ -163,6 +168,21 @@ namespace App.Features.Vehicles.Pages.Add
 
                         }, showBusy: true, busyMessage: AppResources.Loading, ignoreCache: true);
             }
+        }
+
+        async Task AddUser()
+        {
+            var newUser = new UserModel { Mobile = Phone.Value.Trim(), Password = EngineNumber.Value.Trim(), Username = OwnerName.Value.Trim() };
+            await ApiCallManager.ExecuteCall(() => UserService.CreateUser(newUser),
+                        response =>
+                        {
+
+                        },
+                        error =>
+                        {
+                            DialogService.HideLoading();
+
+                        }, showBusy: true, busyMessage: AppResources.Loading, ignoreCache: true);
         }
 
         async Task UpdateSpareDetails(Vehicle vehicle)

@@ -7,7 +7,6 @@ using App.Providers.Api.Services;
 using App.Providers.Database.Services;
 using App.Providers.Dialog.Services;
 using App.Providers.Navigation.Services;
-using Xamarin.Forms;
 
 namespace App.Providers.Navigation.Base
 {
@@ -34,7 +33,7 @@ namespace App.Providers.Navigation.Base
             SqliteService = ViewModelLocator.Resolve<ISQLiteService>();
             NavigationService = ViewModelLocator.Resolve<INavigationService>();
             DialogService = ViewModelLocator.Resolve<IDialogService>();
-            UserService = DependencyService.Get<IUserService>();
+            UserService = ViewModelLocator.Resolve<IUserService>();
             AccessoriesService = ViewModelLocator.Resolve<IAccessoriesService>();
             SpareService = ViewModelLocator.Resolve<ISpareService>();
             VehicleService = ViewModelLocator.Resolve<IVehicleService>();

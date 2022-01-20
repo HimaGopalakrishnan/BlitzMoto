@@ -68,7 +68,7 @@ namespace App.Features.Vehicles.Pages.List
 
         async Task VehicleSelected(Vehicle vehicle)
         {
-            await Application.Current.MainPage.Navigation.PushAsync(new VehicleDetailsView(vehicle.CaseNumber));
+            await Application.Current.MainPage.Navigation.PushAsync(new VehicleDetailsView(vehicle.ContactNumber));
         }
 
         public async Task GetVehicles()

@@ -25,7 +25,7 @@ namespace App.Features.Menu.Pages
             {
                 if (item.Title == "Logout")
                 {
-                    DependencyService.Get<IUserService>().SignOut();
+                    ViewModelLocator.Resolve<IUserService>().SignOut();
                 }
                 var page = (Page)Activator.CreateInstance(item.TargetType);
                 page.Title = item.Title;

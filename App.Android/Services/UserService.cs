@@ -4,10 +4,10 @@ using App.Features.User.Services;
 using Firebase.Auth;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(UserService))]
+//[assembly: Dependency(typeof(UserService))]
 namespace App.Droid.Services
 {
-    public class UserService : IUserService
+    public class UserService// : IUserService
     {
         public bool IsSignIn()
             => FirebaseAuth.Instance.CurrentUser != null;

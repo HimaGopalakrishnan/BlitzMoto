@@ -60,7 +60,7 @@ namespace App.Features.Home
 
         async Task NavigateToPage(string view)
         {
-            if (!DependencyService.Get<IUserService>().IsSignIn())
+            if (!UserService.IsSignIn())
             {
                 _dialogService.Alert("Please login to continue");
                 await _navigationService.NavigateToAsync<LoginViewModel>();

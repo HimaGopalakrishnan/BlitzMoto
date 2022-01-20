@@ -50,13 +50,12 @@ namespace App.Features.Vehicles.Services
             return true;
         }
 
-        public async Task<Vehicle> GetVehicleDetails(string caseNumber)
+        public async Task<Vehicle> GetVehicleDetails(string contactNumber)
         {
-            var allVehicles = await GetAllVehicleDetails();
-            await FirebaseClient
-              .Child("Vehicles")
-              .OnceAsync<Vehicle>();
-            return allVehicles.Where(x => x.CaseNumber == caseNumber).FirstOrDefault();
+            var vehicle = (await FirebaseClient
+               .Child("Vehicles")
+               .OnceAsync<Vehicle>()).Where(x => x.Object.ContactNumber == contactNumber).FirstOrDefault();
+            return vehicle.Object;
         }
 
         public async Task UpdateVehicleDetails(Vehicle spare)

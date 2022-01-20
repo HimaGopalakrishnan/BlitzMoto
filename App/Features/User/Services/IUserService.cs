@@ -1,12 +1,13 @@
 ﻿using System.Threading.Tasks;
+using App.Features.User.Models;
 
 namespace App.Features.User.Services
 {
     public interface IUserService
     {
         bool IsSignIn();
-        Task<bool> CreateUser(string username, string email, string password);
-        Task<string> SignIn(string email, string password);
+        Task<bool> CreateUser(UserModel user);
+        Task<string> SignIn(UserModel user);
         void SignOut();
         Task ResetPassword(string email);
     }

@@ -2,6 +2,8 @@
 using System.Threading;
 using App.Constants;
 using App.Features.Menu.Pages;
+using App.Features.User.Pages.Login;
+using App.Features.User.Services;
 using App.Providers.Navigation.Services;
 using App.Resx;
 using Microsoft.AppCenter.Crashes;
@@ -36,7 +38,14 @@ namespace App
         {
             base.OnStart();
             await _navigationService.InitializeAsync();
-            MainPage = new NavigationPage(new MenuView());
+            if (ViewModelLocator.Resolve<IUserService>().IsSignIn())
+            {
+                MainPage = new NavigationPage(new MenuView());
+            }
+            else
+            {
+                MainPage = new NavigationPage(new LoginView());
+            }
         }
 
         protected override void OnSleep()
