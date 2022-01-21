@@ -8,6 +8,8 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Vehicle details not found"
+                   Style="{StaticResource ListLabelStyle}"
+                   HorizontalOptions="Center"
                    IsVisible="{Binding IsVisible, Converter={StaticResource InvertedBoolConverter}}"/>
             <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
                   ColumnDefinitions="*,*"
@@ -31,8 +33,9 @@
                 <Label Grid.Row="6" Grid.Column="1" Text="{Binding Kilometer}" Style="{StaticResource ListLabelStyle}"/>
                 <StackLayout Grid.Row="7"
                              IsVisible="{Binding IsAdmin}">
-                <Label Text="Note" Style="{StaticResource PlaceholderLabelStyle}"/>
-                <Label Grid.Column="1" Text="{Binding Note}" Style="{StaticResource ListLabelStyle}"/></StackLayout>
+                    <Label Text="Note" Style="{StaticResource PlaceholderLabelStyle}"/>
+                    <Label Grid.Column="1" Text="{Binding Note}" Style="{StaticResource ListLabelStyle}"/>
+                </StackLayout>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

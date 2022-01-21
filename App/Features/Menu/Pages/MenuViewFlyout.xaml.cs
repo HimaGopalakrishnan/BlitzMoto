@@ -57,7 +57,7 @@ namespace App.Features.Menu.Pages
                     {
                         MenuItems.Add(new MenuViewFlyoutMenuItem { Id = MenuItems.Count, Title = "Vehicle Details", TargetType = typeof(VehicleDetailsView) });
                     }
-                    MenuItems.Add(new MenuViewFlyoutMenuItem { Id = MenuItems.Count, Title = "Logout", TargetType = typeof(LoginView) });
+                    MenuItems.Add(new MenuViewFlyoutMenuItem { Id = MenuItems.Count, Title = "Logout" });
                 }
                 else
                 {

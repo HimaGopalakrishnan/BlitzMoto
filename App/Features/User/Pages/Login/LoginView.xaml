@@ -34,7 +34,7 @@
                 Grid.Row="4"
                 Grid.ColumnSpan="2" Text="{x:Static resources:AppResources.Password}"
                 Style="{StaticResource PlaceholderLabelStyle}"/>
-            <controls:ValidatorControl BackgroundColor="AliceBlue"
+            <controls:ValidatorControl
                 Grid.Row="5" Grid.ColumnSpan="2"
                 Text="{Binding Password.Value,Mode=TwoWay}"
                 IsPassword="{Binding IsPassword}"

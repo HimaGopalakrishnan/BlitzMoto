@@ -9,6 +9,12 @@ namespace App.Features.Vehicles.Pages.Detail
         VehicleDetailsViewModel vm;
         string contactNumber;
 
+        public VehicleDetailsView()
+        {
+            InitializeComponent();
+            BindingContext = vm = new VehicleDetailsViewModel();
+        }
+
         public VehicleDetailsView(string contactNumber)
         {
             InitializeComponent();

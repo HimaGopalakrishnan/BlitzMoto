@@ -1,4 +1,5 @@
 ﻿using System;
+using App.Features.User.Pages.Login;
 using App.Features.User.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -26,11 +27,14 @@ namespace App.Features.Menu.Pages
                 if (item.Title == "Logout")
                 {
                     ViewModelLocator.Resolve<IUserService>().SignOut();
+                    Application.Current.MainPage = new NavigationPage(new LoginView());
                 }
-                var page = (Page)Activator.CreateInstance(item.TargetType);
-                page.Title = item.Title;
-
-                Detail = new NavigationPage(page);
+                else
+                {
+                    var page = (Page)Activator.CreateInstance(item.TargetType);
+                    page.Title = item.Title;
+                    Detail = new NavigationPage(page);
+                }
             }
             catch (Exception ex)
             {
